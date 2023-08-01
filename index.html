@@ -31,7 +31,7 @@
     <link href="css/style.css" rel="stylesheet">
 </head>
 
-<body>
+<body onload="topstudent(),topcourse()">
     <!-- Spinner Start -->
     <div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
         <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">
@@ -641,7 +641,45 @@
 
     <!-- Template Javascript -->
     <script src="js/main.js"></script>
+
+    <script>
+        //Top 5 student
+        function topstudent(){
+            let requestOptions = {
+                method: 'GET',
+                redirect: 'follow',
+                headers: {'Content-type': 'application/json; charset=UTF-8'}
+              };
+              
+              fetch("http://127.0.0.1:5000/top5student", requestOptions)
+                .then(response => response.json())
+                .then((result) => {
+                    let list=[]
+                    list=result
+                    console.log(list)
+                })
+                .catch(error => console.log('error', error));
+        }
+    </script>
     
+    <script>
+        //Top 5 course
+        function topcourse(){
+            let requestOptions = {
+                method: 'GET',
+                redirect: 'follow'
+              };
+              
+              fetch("http://127.0.0.1:5000/top5course", requestOptions)
+              .then(response => response.json())
+              .then((result) => {
+                  let list=[]
+                  list=result
+                  console.log(list)
+              })
+                .catch(error => console.log('error', error));
+        }
+    </script>
 </body>
 
 </html>
