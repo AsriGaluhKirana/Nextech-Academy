@@ -1,36 +1,82 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <title>eLEARNING - eLearning HTML Template</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="css/auth.css" />
-        <link href="img/logo.png" rel="icon">
-    </head>
-    <body>
-        <div class="container clearfix">
-            <div class="form login">
-                <a class="logo" href="">
-                    <img src="img/logo.png" alt="Logo" />
-                </a>
-                <form>
-                    <p>
-                        <label>Username or email address<span>*</span></label>
-                        <input type="email" required>
-                    </p>
-                    <p>
-                        <label>Password<span>*</span></label>
-                        <input type="password" required>
-                    </p>
-                    <p>
-                        <label>
-                            <a href="index.html">Back to home</a>
-                            <a href="registration.html">Create an account</a>
-                        </label>
-                        <input type="submit" value="Login" />
-                    </p>
-                </form>
-            </div>
-        </div>
-    </body>
+  <head>
+    <title>eLEARNING - eLearning HTML Template</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/auth.css" />
+    <link href="img/logo.png" rel="icon" />
+  </head>
+  <body>
+    <div class="container clearfix">
+      <div class="form login">
+        <a class="logo" href="">
+          <img src="img/logo.png" alt="Logo" />
+        </a>
+        <form id="login-form">
+          <p>
+            <label>Username<span>*</span></label>
+            <input type="text" id="username" required />
+          </p>
+          <p>
+            <label>Password<span>*</span></label>
+            <input type="password" id="password" required />
+          </p>
+          <p>
+            <label>
+              <a href="index.html">Back to home</a>
+              <a href="registration.html">Create an account</a>
+            </label>
+            <input type="submit" value="Login" />
+          </p>
+        </form>
+      </div>
+    </div>
+
+    <script>
+      let formLogin = document.getElementById("login-form");
+      formLogin.addEventListener("submit", login);
+
+      function login(event) {
+        event.preventDefault();
+
+        let username = document.getElementById("username").value;
+        let password = document.getElementById("password").value;
+        let token = btoa(username + ":" + password);
+        let myHeaders = new Headers();
+        myHeaders.append("Authorization", "Basic" + " " + token);
+        myHeaders.append("Content-type", "application/json; charset=UTF-8");
+
+        let requestOptions = {
+          method: "POST",
+          headers: myHeaders,
+        };
+
+        fetch("http://127.0.0.1:5000/login", requestOptions)
+          .then((response) => {
+            if (!response.ok) {
+              throw new Error("Login failed! check username or password");
+            } else {
+              return response.json();
+            }
+          })
+          .then((jsonResp) => {
+            if (jsonResp.id[0] === "S") {
+                alert("Hai Academian, kamu berhasil Login.")
+              ///localStorage.setItem("isLoggedIn", true);
+              //localStorage.setItem("username", jsonResp.username);
+              //window.location.href = "home-company.html";
+            } else {
+                alert("Hai Admin, kamu berhasil Login")
+              //localStorage.setItem("isLoggedIn", true);
+              //localStorage.setItem("username", jsonResp.username);
+              //window.location.href = "home-jobseeker.html";
+            }
+          })
+          .catch((error) => {
+            alert(error.message);
+          });
+      }
+    </script>
+  </body>
 </html>

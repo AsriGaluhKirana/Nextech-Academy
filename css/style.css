@@ -101,7 +101,7 @@
 }
 
 @media (max-width: 991.98px) {
-    .navbar-light .navbar-nav .nav-link  {
+    .navbar-light .navbar-nav .nav-link {
         margin-right: 0;
         padding: 10px 0;
     }
@@ -157,7 +157,7 @@
         position: relative;
         min-height: 500px;
     }
-    
+
     .header-carousel .owl-carousel-item img {
         position: absolute;
         width: 100%;
@@ -207,7 +207,7 @@
     background: rgba(15, 23, 43, .7);
 }
 
-.breadcrumb-item + .breadcrumb-item::before {
+.breadcrumb-item+.breadcrumb-item::before {
     color: var(--light);
 }
 
@@ -273,7 +273,7 @@
 
 
 /*** Categories & Courses ***/
-.category img,
+/* .category img,
 .course-item img {
     transition: .5s;
 }
@@ -281,8 +281,39 @@
 .category a:hover img,
 .course-item:hover img {
     transform: scale(1.1);
+} */
+
+.card-course {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    transition: 0.3s;
+    /* width: 40%; */
 }
 
+.card:hover {
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+}
+
+.container-course {
+    padding: 2px 16px;
+}
+
+.card-all-course {
+    gap: 1rem;
+}
+
+/*lineclamp*/
+.line-clamp {
+    height: 53px;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+}
+
+h5 {
+    margin-bottom: 10px;
+    height: 50px;
+}
 
 /*** Team ***/
 .team-item img {
@@ -318,6 +349,7 @@
 }
 
 @media (min-width: 768px) {
+
     .testimonial-carousel::before,
     .testimonial-carousel::after {
         width: 200px;
@@ -325,6 +357,7 @@
 }
 
 @media (min-width: 992px) {
+
     .testimonial-carousel::before,
     .testimonial-carousel::after {
         width: 300px;
