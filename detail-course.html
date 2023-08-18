@@ -33,7 +33,7 @@
     <link href="css/style.css" rel="stylesheet" />
 </head>
 
-<body onload="allcourses()">
+<body>
     <!-- Spinner Start -->
     <div id="spinner"
         class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
@@ -80,17 +80,17 @@
         <div class="container py-5">
             <div class="row justify-content-center">
                 <div class="col-lg-10 text-center">
-                    <h1 class="display-3 text-white animated slideInDown">Courses</h1>
+                    <h1 class="display-3 text-white animated slideInDown">Detail Courses</h1>
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb justify-content-center">
                             <li class="breadcrumb-item">
-                                <a class="text-white" href="#">Home</a>
+                                <a class="text-white" href="/index.html">Home</a>
                             </li>
                             <li class="breadcrumb-item">
-                                <a class="text-white" href="#">Pages</a>
+                                <a class="text-white" href="/courses.html">Courses</a>
                             </li>
                             <li class="breadcrumb-item text-white active" aria-current="page">
-                                Courses
+                                Detail Courses
                             </li>
                         </ol>
                     </nav>
@@ -100,34 +100,117 @@
     </div>
     <!-- Header End -->
 
-    <!-- Categories Start -->
-    <div class="container-xxl py-5 category">
+    <!-- Detail Course Start -->
+    <div class="container-xxl py-5">
         <div class="container">
-            <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
-                <h6 class="section-title bg-white text-center text-primary px-3">
-                    Courses
-                </h6>
-                <h1 class="mb-5">All Courses</h1>
-            </div>
-            <div class="card-all-course row d-flex g-4 justify-content-center" id="all-course">
-                <div class="d-flex justify-content-center mb-2">
+            <div class="row justify-content-center">
+                <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.1s" style="min-height: 400px;">
+                    <div class="position-relative h-100">
+                        <img class="img-fluid position-absolute " src="img/course-1-free-img.jpg" alt=""
+                            style="object-fit: cover;">
+                    </div>
                 </div>
-                <!-- <div class="card-course">
-                    <img src="/img/course-2.jpg" alt="Avatar" style="width: 100%" />
-                    <div class="container-course">
-                        <h4><b>Title</b></h4>
-                        <p>deskripsi</p>
-                        <div class="d-flex justify-content-center mb-2">
-                            <button type="button" class="btn btn-primary w-100">
-                                Read more...
-                            </button>
+                <div class="detail">
+                    <h1 class="mb-4">Title</h1>
+                    <h4>Course Description</h4>
+                    <p class="mb-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque porta augue
+                        tortor.</p>
+                    <button type="button" class="btn btn-primary">
+                        Login to Enroll
+                    </button>
+                </div>
+                <div>
+
+                    <div class="container-accordion">
+                        <div class="accordion-option">
+                            <h3 class="title">Lorem Ipsum</h3>
+                            <a href="javascript:void(0)" class="toggle-accordion active" accordion-id="#accordion"></a>
+                        </div>
+                        <div class="clearfix"></div>
+                        <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+                            <div class="panel panel-default">
+                                <div class="panel-heading" role="tab" id="headingOne">
+                                    <h4 class="panel-title">
+                                        <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne"
+                                            aria-expanded="true" aria-controls="collapseOne">
+                                            Collapsible Group Item #1
+                                        </a>
+                                    </h4>
+                                </div>
+                                <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel"
+                                    aria-labelledby="headingOne">
+                                    <div class="panel-body">
+                                        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry
+                                        richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor
+                                        brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor,
+                                        sunt aliqua put a bird
+                                        on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim
+                                        keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea
+                                        proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer
+                                        farm-to-table,
+                                        raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus
+                                        labore sustainable VHS.
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="panel panel-default">
+                                <div class="panel-heading" role="tab" id="headingTwo">
+                                    <h4 class="panel-title">
+                                        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion"
+                                            href="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+                                            Collapsible Group Item #2
+                                        </a>
+                                    </h4>
+                                </div>
+                                <div id="collapseTwo" class="panel-collapse collapse in" role="tabpanel"
+                                    aria-labelledby="headingTwo">
+                                    <div class="panel-body">
+                                        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry
+                                        richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor
+                                        brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor,
+                                        sunt aliqua put a bird
+                                        on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim
+                                        keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea
+                                        proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer
+                                        farm-to-table,
+                                        raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus
+                                        labore sustainable VHS.
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="panel panel-default">
+                                <div class="panel-heading" role="tab" id="headingThree">
+                                    <h4 class="panel-title">
+                                        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion"
+                                            href="#collapseThree" aria-expanded="true" aria-controls="collapseThree">
+                                            Collapsible Group Item #3
+                                        </a>
+                                    </h4>
+                                </div>
+                                <div id="collapseThree" class="panel-collapse collapse in" role="tabpanel"
+                                    aria-labelledby="headingThree">
+                                    <div class="panel-body">
+                                        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry
+                                        richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor
+                                        brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor,
+                                        sunt aliqua put a bird
+                                        on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim
+                                        keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea
+                                        proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer
+                                        farm-to-table,
+                                        raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus
+                                        labore sustainable VHS.
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div> -->
+                </div>
             </div>
         </div>
     </div>
-    <!-- Categories Start -->
+
+    <!-- Detail Course Start -->
 
     <!-- Footer Start -->
     <div class="container-fluid bg-dark text-light footer pt-5 mt-5 wow fadeIn" data-wow-delay="0.1s">
@@ -235,39 +318,7 @@
     <script src="js/main.js"></script>
 
     <script>
-        function allcourses() {
-            let requestOptions = {
-                method: "GET",
-                redirect: "follow",
-                headers: { "Content-type": "application/json; charset=UTF-8" },
-            };
-            fetch("http://127.0.0.1:5000/course", requestOptions)
-                .then((response) => response.json())
-                .then((result) => {
-                    let list = [];
-                    list = result;
-                    console.log(list);
-                    landingsectioncourses = document.getElementById("all-course");
-                    for (let i = 0; i < list.length; i++) {
-                        landingsectioncourses.innerHTML += `
-                            <div class="card-course col-3">
-                                <img src="/img/course-2.jpg" alt="Avatar" style="width: 100%" />
-                                <div class="container-course">
-                                    <h5><b>${list[i].nama}</b></h5>
-                                    <p class="line-clamp">${list[i].deskripsi}</p>
-                                    <button onclick="Redirect()" type="button" class="btn btn-primary w-100 mb-2">Read more...</button>
-                                </div>
-                            </div>
-                    `;
-                    }
-                })
-                .catch((error) => console.log("error", error));
-        }
 
-        // read-more
-        function Redirect() {
-        window.location.href="detail-course.html";
-        }
     </script>
 </body>
 
