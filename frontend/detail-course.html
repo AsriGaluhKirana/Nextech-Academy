@@ -33,7 +33,7 @@
     <link href="css/style.css" rel="stylesheet" />
 </head>
 
-<body onload="allcourses()">
+<body>
     <!-- Spinner Start -->
     <div id="spinner"
         class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
@@ -43,7 +43,6 @@
     </div>
     <!-- Spinner End -->
 
-    <!-- Navbar Start -->
     <nav class="navbar navbar-expand-lg bg-white navbar-light shadow sticky-top p-0">
         <a href="index.html" class="navbar-brand d-flex align-items-center px-4 px-lg-5">
           <h2 class="m-0 text-primary">
@@ -58,16 +57,7 @@
             <a href="index.html" class="nav-item nav-link active">Home</a>
             <a href="about.html" class="nav-item nav-link">About</a>
             <a href="courses.html" class="nav-item nav-link">Courses</a>
-            <div class="nav-item dropdown">
-              <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>
-              <div class="dropdown-menu fade-down m-0">
-                <a href="team.html" class="dropdown-item">Our Team</a>
-                <a href="testimonial.html" class="dropdown-item">Testimonial</a>
-                <a href="404.html" class="dropdown-item">404 Page</a>
-                <a href="profile.html" class="dropdown-item">Profile</a>
-              </div>
-            </div>
-            <a href="contact.html" class="nav-item nav-link">Contact</a>
+            
             <a href="#" id="textwelcome" class="nav-item nav-link">Selamat Datang Asri</a>
           </div>
           <div id="loginbtn">
@@ -81,24 +71,23 @@
          
         </div>
       </nav>
-    <!-- Navbar End -->
 
     <!-- Header Start -->
     <div class="container-fluid bg-primary py-5 mb-5 page-header">
         <div class="container py-5">
             <div class="row justify-content-center">
                 <div class="col-lg-10 text-center">
-                    <h1 class="display-3 text-white animated slideInDown">Courses</h1>
+                    <h1 class="display-3 text-white animated slideInDown">Detail Courses</h1>
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb justify-content-center">
                             <li class="breadcrumb-item">
-                                <a class="text-white" href="#">Home</a>
+                                <a class="text-white" href="/index.html">Home</a>
                             </li>
                             <li class="breadcrumb-item">
-                                <a class="text-white" href="#">Pages</a>
+                                <a class="text-white" href="/courses.html">Courses</a>
                             </li>
                             <li class="breadcrumb-item text-white active" aria-current="page">
-                                Courses
+                                Detail Courses
                             </li>
                         </ol>
                     </nav>
@@ -108,34 +97,112 @@
     </div>
     <!-- Header End -->
 
-    <!-- Categories Start -->
-    <div class="container-xxl py-5 category">
+    <!-- Detail Course Start -->
+    <div class="container-xxl py-5">
         <div class="container">
-            <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
-                <h6 class="section-title bg-white text-center text-primary px-3">
-                    Courses
-                </h6>
-                <h1 class="mb-5">All Courses</h1>
-            </div>
-            <div class="card-all-course row d-flex g-4 justify-content-center" id="all-course">
-                <div class="d-flex justify-content-center mb-2">
-                </div>
-                <!-- <div class="card-course">
-                    <img src="/img/course-2.jpg" alt="Avatar" style="width: 100%" />
-                    <div class="container-course">
-                        <h4><b>Title</b></h4>
-                        <p>deskripsi</p>
-                        <div class="d-flex justify-content-center mb-2">
-                            <button type="button" class="btn btn-primary w-100">
-                                Read more...
-                            </button>
+            <div class="container-detail row justify-content-center">
+                <div class="content-course">
+                    <div class="img-course mb-3 d-flex justify-content-center">
+                        <img class="imgcourse" src="img/course-1-free-img.jpg" alt="">
+                    </div>
+                    <div class="detail mb-3">
+                        <h1 id="course-title" class="mb-4">Title</h1>
+                        <h4>Course Description</h4>
+                        <p id="course-desc" class="mb-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque porta
+                            augue
+                            tortor.</p>
+                        <button type="button" class="btn btn-primary">
+                            Login to Enroll
+                        </button>
+                    </div>
+                    <div class="accor">
+                        <h4>Course Content</h4>
+                        <div class="accordion" id="accordionPanelsStayOpenExample">
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="panelsStayOpen-headingOne">
+                                    <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true"
+                                        aria-controls="panelsStayOpen-collapseOne">
+                                        Accordion Item #1
+                                    </button>
+                                </h2>
+                                <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show"
+                                    aria-labelledby="panelsStayOpen-headingOne">
+                                    <div class="accordion-body">
+                                        <strong>This is the first item's accordion body.</strong> It is shown by
+                                        default,
+                                        until the collapse plugin adds the appropriate classes that we use to style each
+                                        element. These classes control the overall appearance, as well as the showing
+                                        and
+                                        hiding via CSS transitions. You can modify any of this with custom CSS or
+                                        overriding
+                                        our default variables. It's also worth noting that just about any HTML can go
+                                        within
+                                        the <code>.accordion-body</code>, though the transition does limit overflow.
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="panelsStayOpen-headingTwo">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#panelsStayOpen-collapseTwo" aria-expanded="false"
+                                        aria-controls="panelsStayOpen-collapseTwo">
+                                        Accordion Item #2
+                                    </button>
+                                </h2>
+                                <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse"
+                                    aria-labelledby="panelsStayOpen-headingTwo">
+                                    <div class="accordion-body">
+                                        <strong>This is the second item's accordion body.</strong> It is hidden by
+                                        default,
+                                        until the collapse plugin adds the appropriate classes that we use to style each
+                                        element. These classes control the overall appearance, as well as the showing
+                                        and
+                                        hiding via CSS transitions. You can modify any of this with custom CSS or
+                                        overriding
+                                        our default variables. It's also worth noting that just about any HTML can go
+                                        within
+                                        the <code>.accordion-body</code>, though the transition does limit overflow.
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="panelsStayOpen-headingThree">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#panelsStayOpen-collapseThree" aria-expanded="false"
+                                        aria-controls="panelsStayOpen-collapseThree">
+                                        Accordion Item #3
+                                    </button>
+                                </h2>
+                                <div id="panelsStayOpen-collapseThree" class="accordion-collapse collapse"
+                                    aria-labelledby="panelsStayOpen-headingThree">
+                                    <div class="accordion-body">
+                                        <strong>This is the third item's accordion body.</strong> It is hidden by
+                                        default,
+                                        until the collapse plugin adds the appropriate classes that we use to style each
+                                        element. These classes control the overall appearance, as well as the showing
+                                        and
+                                        hiding via CSS transitions. You can modify any of this with custom CSS or
+                                        overriding
+                                        our default variables. It's also worth noting that just about any HTML can go
+                                        within
+                                        the <code>.accordion-body</code>, though the transition does limit overflow.
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div> -->
+                    <div class="btn-finish justify-content-end mt-4 d-flex">
+                        <button type="button" class="btn btn-primary">
+                            Finish
+                        </button>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
-    <!-- Categories Start -->
+
+    <!-- Detail Course Start -->
 
     <!-- Footer Start -->
     <div class="container-fluid bg-dark text-light footer pt-5 mt-5 wow fadeIn" data-wow-delay="0.1s">
@@ -243,55 +310,40 @@
     <script src="js/main.js"></script>
 
     <script>
-        function allcourses() {
-            let requestOptions = {
-                method: "GET",
-                redirect: "follow",
-                headers: { "Content-type": "application/json; charset=UTF-8" },
-            };
-            fetch("http://127.0.0.1:5000/course", requestOptions)
-                .then((response) => response.json())
-                .then((result) => {
-                    let list = [];
-                    list = result;
-                    console.log(list);
-                    landingsectioncourses = document.getElementById("all-course");
-                    for (let i = 0; i < list.length; i++) {
-                        landingsectioncourses.innerHTML += `
-                            <div class="card-course col-3">
-                                <img src="/img/course-2.jpg" alt="Avatar" style="width: 100%" />
-                                <div class="container-course">
-                                    <h5><b>${list[i].nama}</b></h5>
-                                    <h5 id="cekid" style="display: none;"><b>${list[i].id}</b></h5>
-                                    <p class="line-clamp">${list[i].deskripsi}</p>
-                                    <button onclick="Redirect('`+list[i].id+`')" type="button" class="btn btn-primary w-100 mb-2">Read more...</button>
-                                </div>
-                            </div>
-                    `;
-                    }
-                })
-                .catch((error) => console.log("error", error));
-        }
-
-        // read-more
-        function Redirect(id) {
-        window.location.href="detail-course.html?cid="+id;
-        }
-
-   
-            if(localStorage.getItem("userLoggedin") != null){
-                document.getElementById("loginbtn").style.display = "none";
-                document.getElementById("textwelcome").textContent = "Selamat datang " + localStorage.getItem("userLoggedin");
-                console.log("login");
-          
-              }
-              else{
-                document.getElementById("logoutbtn").style.display = "none";
-                document.getElementById("textwelcome").style.display = "none";
-              }
-
 
     </script>
 </body>
 
 </html>
+
+<script>
+    const urlParams = new URLSearchParams(window.location.search);
+    const myParam = urlParams.get('cid');
+
+    console.log(myParam);
+
+    let requestOptions = {
+        method: "GET",
+        redirect: "follow",
+        headers: { "Content-type": "application/json; charset=UTF-8" },
+    };
+    fetch("http://127.0.0.1:5000/course/detail-course/"+myParam+"", requestOptions)
+        .then((response) => response.json())
+        .then((result) => {
+            console.log(result);
+            document.getElementById("course-title").textContent=result.nama;
+            document.getElementById("course-desc").textContent=result.deskripsi;
+        })
+
+        if(localStorage.getItem("userLoggedin") != null){
+            document.getElementById("loginbtn").style.display = "none";
+            document.getElementById("textwelcome").textContent = "Selamat datang " + localStorage.getItem("userLoggedin");
+            console.log("login");
+      
+          }
+          else{
+            document.getElementById("logoutbtn").style.display = "none";
+            document.getElementById("textwelcome").style.display = "none";
+          }
+        
+</script>
