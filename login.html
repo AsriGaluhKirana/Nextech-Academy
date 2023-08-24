@@ -62,7 +62,12 @@
           })
           .then((jsonResp) => {
             if (jsonResp.id[0] === "S") {
-                alert("Hai Academian, kamu berhasil Login.")
+                //alert("Hai Academian, kamu berhasil Login.")
+              localStorage.setItem("userLoggedin",jsonResp.nama);
+              console.log(localStorage.getItem("userLoggedin_"))
+              if (localStorage.getItem("userLoggedin")!= null) {
+                 (location.href="index.html");
+              }
               ///localStorage.setItem("isLoggedIn", true);
               //localStorage.setItem("username", jsonResp.username);
               //window.location.href = "home-company.html";
