@@ -249,7 +249,7 @@
                     for (let i = 0; i < list.length; i++) {
                         landingsectioncourses.innerHTML += `
                             <div class="card-course col-3">
-                                <img src="/img/course-2.jpg" alt="Avatar" style="width: 100%" />
+                                <img src="/frontend/img/course-2.jpg" alt="Avatar" style="width: 100%" />
                                 <div class="container-course">
                                     <h5><b>${list[i].nama}</b></h5>
                                     <h5 id="cekid" style="display: none;"><b>${list[i].id}</b></h5>
@@ -267,20 +267,15 @@
         function Redirect(id) {
         window.location.href="detail-course.html?cid="+id;
         }
-
-   
             if(localStorage.getItem("userLoggedin") != null){
                 document.getElementById("loginbtn").style.display = "none";
                 document.getElementById("textwelcome").textContent = "Selamat datang " + localStorage.getItem("userLoggedin");
                 console.log("login");
-          
               }
               else{
                 document.getElementById("logoutbtn").style.display = "none";
                 document.getElementById("textwelcome").style.display = "none";
               }
-
-
     </script>
 </body>
 

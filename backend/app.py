@@ -153,10 +153,8 @@ def create_course():
 def update_course(id):
     course = Course.query.filter_by(id=id).first_or_404()
     data=request.get_json()
-    course.id = data.get('id'),
-    course.nama = data.get('nama'),
-    course.deskripsi = data.get('deskripsi'),
-    course.kategori = data.get('kategori')
+    course.nama = data.get('nama')
+    course.deskripsi = data.get('deskripsi')
     
     db.session.add(course)
     db.session.commit()
@@ -244,11 +242,11 @@ def list_enrolled_users(id):
 #Endpoint delete from course
 @app.route('/course/enroll/<id>', methods=['DELETE'])
 def delete_enroll(id):
-    user = login()
+    #user = login()
     data = Coursedata.query.filter_by(user_id=id).first_or_404()
-    if user.role == 'Admin':
-        db.session.delete(data)
-        db.session.commit()
+    # if user.role == 'Admin':
+    db.session.delete(data)
+    db.session.commit()
     return {"message": "Hore! Data selesai dihapus."}
 
 
