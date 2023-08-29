@@ -16,6 +16,7 @@ class Pengguna(db.Model):
     nama = db.Column(db.String)
     password = db.Column(db.String, nullable=False)
     role = db.Column(db.String, nullable=False)
+    student = db.relationship('Coursedata', backref='student', lazy='dynamic')
 
 
 #tabel course
@@ -305,6 +306,20 @@ def view_report_student():
         rank +=1
         result.append({'rank': rank, 'nama' : i.nama, 'jumlah_completed' : i.jumlah})
     return jsonify(result)
+
+
+@app.route('/listenroll')
+def get_student_enroll():
+    coursedata = Coursedata.query.all()
+    
+    response = [
+        {
+            "user_name": c.student.nama,
+            "course_name": c.course.nama,
+            "status" : c.status,
+        } for c in coursedata
+    ] #penambahan nama user/student
+    return {"message": "success.", "data" : response}
 
 
 if __name__ == '__main__':
