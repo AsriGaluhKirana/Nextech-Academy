@@ -106,6 +106,13 @@
                     Courses
                 </h6>
                 <h1 class="mb-5">All Courses</h1>
+                <div class="search-box d-inline-block w-75">
+                    <div class="search mb-4">
+                        <i class="fa fa-search"></i>
+                        <input type="text" class="form-control" id="search-all" placeholder="What do you want to learn?">
+                        <button onclick="search_course_desc()" class="btn btn-primary">Search</button>
+                      </div>
+                </div>
             </div>
             <div class="card-all-course row d-flex g-4 justify-content-center" id="all-course">
                 <div class="d-flex justify-content-center mb-2">
@@ -263,6 +270,39 @@
                 .catch((error) => console.log("error", error));
         }
 
+        //search course & description
+        function search_course_desc() {
+            const searchValue = document.getElementById("search-all").value
+            let requestOptions = {
+                method: "GET",
+                redirect: "follow",
+                headers: { "Content-type": "application/json; charset=UTF-8" },
+            };
+            fetch("http://127.0.0.1:5000/search?"+ new URLSearchParams({ keyword: searchValue }), requestOptions)
+                .then((response) => response.json())
+                .then((result) => {
+                    let list = [];
+                    list = result;
+                    console.log(list);
+                    landingsectioncourses = document.getElementById("all-course");
+                    landingsectioncourses.innerHTML = ""
+                    for (let i = 0; i < list.length; i++) {
+                        landingsectioncourses.innerHTML += `
+                            <div class="card-course col-3">
+                                <img src="/frontend/img/course-2.jpg" alt="Avatar" style="width: 100%" />
+                                <div class="container-course">
+                                    <h5><b>${list[i].nama}</b></h5>
+                                    <h5 id="cekid" style="display: none;"><b>${list[i].id}</b></h5>
+                                    <p class="line-clamp">${list[i].deskripsi}</p>
+                                    <button onclick="Redirect('`+list[i].id+`')" type="button" class="btn btn-primary w-100 mb-2">Read more...</button>
+                                </div>
+                            </div>
+                    `;
+                    }
+                })
+                .catch((error) => console.log("error", error));
+        }
+
         // read-more
         function Redirect(id) {
         window.location.href="detail-course.html?cid="+id;
@@ -276,6 +316,7 @@
                 document.getElementById("logoutbtn").style.display = "none";
                 document.getElementById("textwelcome").style.display = "none";
               }
+            
     </script>
 </body>
 

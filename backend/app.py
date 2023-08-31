@@ -1,6 +1,7 @@
 from flask import Flask, jsonify, request
 from flask_sqlalchemy import SQLAlchemy
 from flask_cors import CORS
+from sqlalchemy import or_
 
 
 app = Flask(__name__)
@@ -251,34 +252,53 @@ def delete_enroll(id):
 
 
 #Endpoint search course by name
-@app.route('/search/course/<name>', methods=['GET'])
-def search_course(name):
-    courses = Course.query.filter(Course.nama.ilike(f'%{name}%')).all()
+# @app.route('/search/course/<name>', methods=['GET'])
+# def search_course(name):
+#     courses = Course.query.filter(Course.nama.ilike(f'%{name}%')).all()
     
-    if not courses:
-        return jsonify({'message': 'No courses found'})
+#     if not courses:
+#         return jsonify({'message': 'No courses found'})
     
-    result = []
-    for course in courses:
-        result.append({'id': course.id, 'nama': course.nama, 'deskripsi': course.deskripsi})
+#     result = []
+#     for course in courses:
+#         result.append({'id': course.id, 'nama': course.nama, 'deskripsi': course.deskripsi})
     
-    return jsonify(result)
+#     return jsonify(result)
 
 
 #Endpoint search course by deskripsi
-@app.route('/search/course/deskripsi/<description>', methods=['GET'])
-def search_course_description(description):
-    courses = Course.query.filter(Course.deskripsi.ilike(f'%{description}%')).all()
+# @app.route('/search/course/deskripsi/<description>', methods=['GET'])
+# def search_course_description(description):
+#     courses = Course.query.filter(Course.deskripsi.ilike(f'%{description}%')).all()
     
-    if not courses:
+#     if not courses:
+#         return jsonify({'message': 'No courses found'})
+    
+#     result = []
+#     for course in courses:
+#         result.append({'id': course.id, 'nama': course.nama, 'deskripsi': course.deskripsi})
+
+#     return jsonify(result)
+
+
+#Endpoint search by course & description
+@app.route('/search', methods=['GET'])
+def search_course_desc():
+    keyword = request.args["keyword"]
+    search_list = (
+        Course.query.filter(
+            or_(Course.nama.ilike(f"%{keyword}%"), Course.deskripsi.ilike(f"%{keyword}%"))
+        )
+        .all()
+    )
+    if not search_list:
         return jsonify({'message': 'No courses found'})
     
     result = []
-    for course in courses:
+    for course in search_list:
         result.append({'id': course.id, 'nama': course.nama, 'deskripsi': course.deskripsi})
 
     return jsonify(result)
-
 
 #endpoint reporting Get top 5 course (most enrolled)
 @app.route('/top5course')
