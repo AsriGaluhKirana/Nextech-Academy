@@ -25,7 +25,7 @@ class Course(db.Model):
     id = db.Column(db.String, primary_key=True, nullable=False)
     nama = db.Column(db.String, nullable=False)
     deskripsi = db.Column(db.String, nullable=False)
-    kategori = db.Column(db.String, nullable=False)
+    # kategori = db.Column(db.String, nullable=False)
     student = db.relationship('Coursedata', backref='course', lazy='dynamic')
 
 
@@ -128,8 +128,7 @@ def create_course():
     new_course = Course(
         id = data.get('id'),
         nama = data.get('nama'),
-        deskripsi = data.get('deskripsi'),
-        kategori = data.get('kategori')
+        deskripsi = data.get('deskripsi')
     )
     
     conditions = db.or_(
@@ -339,6 +338,16 @@ def get_student_enroll():
     ] #penambahan nama user/student
     return {"message": "success.", "data" : response}
 
+#detail-course
+@app.route('/course/detail-course/<id>', methods=['GET'])
+def detail_course(id):
+    course = Course.query.filter_by(id=id).first()
+
+    response = {
+            "nama" : course.nama,
+            "deskripsi" : course.deskripsi
+        } 
+    return response
 
 if __name__ == '__main__':
     app.run(debug=True)
