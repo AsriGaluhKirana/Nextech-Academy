@@ -174,9 +174,11 @@ def get_course():
 #Endpoint Enroll course (tidak boleh ambil course yg sama 2x)
 @app.route('/course/enroll/<id>', methods=['POST'])
 def enroll_course(id):
-    user = login()
-    if user.role == 'Student':
-       
+    # user = login()
+    # if user.role == 'Student':
+
+        data = request.get_json()
+        user = db.session.query(Pengguna).filter(Pengguna.nama == data["nama"]).first()
         enrollment_count = db.session.query(Coursedata).filter(Coursedata.user_id == user.id).filter(Coursedata.status.in_(['in progress', 'dropout'])).count()
 
         if enrollment_count >= 5:
@@ -205,8 +207,8 @@ def enroll_course(id):
                     db.session.commit()
                     return {"message": "success enroll"}
        
-    else:
-        return {"message": "Hanya boleh dilakukan oleh student."}
+    # else:
+    #     return {"message": "Hanya boleh dilakukan oleh student."}
 
 
 #Endpoint enroll status complete or dropout
