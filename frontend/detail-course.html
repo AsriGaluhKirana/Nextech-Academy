@@ -45,32 +45,32 @@
 
     <nav class="navbar navbar-expand-lg bg-white navbar-light shadow sticky-top p-0">
         <a href="index.html" class="navbar-brand d-flex align-items-center px-4 px-lg-5">
-          <h2 class="m-0 text-primary">
-            NexTech Academy
-          </h2>
+            <h2 class="m-0 text-primary">
+                NexTech Academy
+            </h2>
         </a>
         <button type="button" class="navbar-toggler me-4" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
-          <span class="navbar-toggler-icon"></span>
+            <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarCollapse">
-          <div class="navbar-nav ms-auto p-4 p-lg-0">
-            <a href="index.html" class="nav-item nav-link">Home</a>
-            <a href="about.html" class="nav-item nav-link">About</a>
-            <a href="courses.html" class="nav-item nav-link active">Courses</a>
-            
-            <a href="#" id="textwelcome" class="nav-item nav-link">Selamat Datang Asri</a>
-          </div>
-          <div id="loginbtn">
-          <a href="login.html" class="btn btn-primary py-4 px-lg-5 d-none d-lg-block">Login<i
-              class="fa fa-arrow-right ms-3"></i></a>
+            <div class="navbar-nav ms-auto p-4 p-lg-0">
+                <a href="index.html" class="nav-item nav-link">Home</a>
+                <a href="about.html" class="nav-item nav-link">About</a>
+                <a href="courses.html" class="nav-item nav-link active">Courses</a>
+
+                <a href="#" id="textwelcome" class="nav-item nav-link">Selamat Datang Asri</a>
             </div>
-              <div id="logoutbtn">
-                <a href="#" class="btn btn-primary py-4 px-lg-5 d-none d-lg-block">Logout<i
-                  class="fa fa-arrow-right ms-3"></i></a>
-              </div>
-         
+            <div id="loginbtn">
+                <a href="login.html" class="btn btn-primary py-4 px-lg-5 d-none d-lg-block">Login<i
+                        class="fa fa-arrow-right ms-3"></i></a>
+            </div>
+            <div id="logoutButton">
+                <a href="index.html" class="btn btn-primary py-4 px-lg-5 d-none d-lg-block">Logout<i
+                        class="fa fa-arrow-right ms-3"></i></a>
+            </div>
+
         </div>
-      </nav>
+    </nav>
 
     <!-- Header Start -->
     <div class="container-fluid bg-primary py-5 mb-5 page-header">
@@ -108,10 +108,12 @@
                     <div class="detail mb-3">
                         <h1 id="course-title" class="mb-4">Title</h1>
                         <h4>Course Description</h4>
-                        <p id="course-desc" class="mb-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque porta
+                        <p id="course-desc" class="mb-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                            Pellentesque porta
                             augue
                             tortor.</p>
-                        <button type="button" onclick="login_redirect()" id="login-enroll" class="btn btn-primary btn-show">
+                        <button type="button" onclick="login_redirect()" id="login-enroll"
+                            class="btn btn-primary btn-show">
                             Login to Enroll
                         </button>
                         <button type="button" onclick="enroll()" id="enroll" class="btn btn-primary">
@@ -238,18 +240,26 @@
     <!-- Template Javascript -->
     <script src="js/main.js"></script>
 
-    <script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-    </script>
 </body>
 
 </html>
 
 <script>
-    function login_redirect() {
-        window.location.href='login.html'
+    function clearLocalStorage() {
+        localStorage.clear();
+        //alert("Local storage berhasil dihapus.");
+        window.location.reload();
     }
-    
+    // Menambahkan event listener untuk tombol logout
+    const logoutButton = document.getElementById('logoutButton');
+    logoutButton.addEventListener('click', clearLocalStorage);
+
+    function login_redirect() {
+        window.location.href = 'login.html'
+    }
+
     const urlParams = new URLSearchParams(window.location.search);
     const myParam = urlParams.get('cid');
 
@@ -258,13 +268,41 @@
         let requestOptions = {
             method: 'POST',
             headers: { "Content-type": "application/json; charset=UTF-8" },
-            body: JSON.stringify({nama:username}),
+            body: JSON.stringify({ nama: username }),
             redirect: 'follow'
-          };
-          
-          fetch("http://127.0.0.1:5000/course/enroll/"+myParam+"", requestOptions)
+        };
+
+        fetch("http://127.0.0.1:5000/course/enroll/" + myParam + "", requestOptions)
             .then(response => response.json())
-            .then(result => console.log(result))
+            .then(result => {
+                const code = result.code
+                if (code === "success") {
+                    Swal.fire({
+                        position: 'top-end',
+                        icon: 'success',
+                        title: 'Success enroll',
+                        showConfirmButton: false,
+                        timer: 1500
+                    })
+                } else if (code === "pre not completed") {
+                    Swal.fire({
+                        position: 'top-end',
+                        icon: 'error',
+                        title: 'Fail enroll because not completed yet',
+                        showConfirmButton: false,
+                        timer: 1500
+                    })
+                } else {
+                    Swal.fire({
+                        position: 'top-end',
+                        icon: 'error',
+                        title: 'Sorry, you have not enrolled the prequisite at all.',
+                        showConfirmButton: false,
+                        timer: 1500
+                    })
+                }
+
+            })
             .catch(error => console.log('error', error));
     }
 
@@ -277,27 +315,27 @@
         redirect: "follow",
         headers: { "Content-type": "application/json; charset=UTF-8" },
     };
-    fetch("http://127.0.0.1:5000/course/detail-course/"+myParam+"", requestOptions)
+    fetch("http://127.0.0.1:5000/course/detail-course/" + myParam + "", requestOptions)
         .then((response) => response.json())
         .then((result) => {
             console.log(result);
-            document.getElementById("course-title").textContent=result.nama;
-            document.getElementById("course-desc").textContent=result.deskripsi;
+            document.getElementById("course-title").textContent = result.nama;
+            document.getElementById("course-desc").textContent = result.deskripsi;
         })
 
-        if(localStorage.getItem("userLoggedin") != null){
-            document.getElementById("login-enroll").style.display = "none";            
-            document.getElementById("loginbtn").style.display = "none";
-            document.getElementById("textwelcome").textContent = "Selamat datang " + localStorage.getItem("userLoggedin");
-            console.log("login");
-      
-        }
-        else{
-            document.getElementById("enroll").style.display = "none";
-            document.getElementById("cancel").style.display = "none";
-            document.getElementById("finish").style.display = "none";
-            document.getElementById("logoutbtn").style.display = "none";
-            document.getElementById("textwelcome").style.display = "none";
-        }
-        
+    if (localStorage.getItem("userLoggedin") != null) {
+        document.getElementById("login-enroll").style.display = "none";
+        document.getElementById("loginbtn").style.display = "none";
+        document.getElementById("textwelcome").textContent = "Selamat datang " + localStorage.getItem("userLoggedin");
+        console.log("login");
+
+    }
+    else {
+        document.getElementById("enroll").style.display = "none";
+        document.getElementById("cancel").style.display = "none";
+        document.getElementById("finish").style.display = "none";
+        document.getElementById("logoutButton").style.display = "none";
+        document.getElementById("textwelcome").style.display = "none";
+    }
+
 </script>

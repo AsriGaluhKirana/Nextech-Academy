@@ -196,11 +196,11 @@ def enroll_course(id):
                         add_enroll = Coursedata(user_id=user.id, course_id=id, status='in progress')
                         db.session.add(add_enroll)
                         db.session.commit()
-                        return {"message": "success enroll"}
+                        return {"message": "success enroll","code":"success"}
                     else :
-                        return {"message": "fail enroll because not completed yet"}
+                        return {"message": "fail enroll because not completed yet","code":"pre not completed"}
                 else:
-                    return {"message": "Maaf gagal, kamu belum enroll sama sekali si prequisitenya!!"}
+                    return {"message": "Maaf gagal, kamu belum enroll sama sekali si prequisitenya!!","code":"pre not enrolled"}
             else :
                     add_enroll = Coursedata(user_id=user.id, course_id=id, status='in progress')
                     db.session.add(add_enroll)

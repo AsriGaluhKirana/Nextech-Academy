@@ -46,31 +46,31 @@
     <!-- Navbar Start -->
     <nav class="navbar navbar-expand-lg bg-white navbar-light shadow sticky-top p-0">
         <a href="index.html" class="navbar-brand d-flex align-items-center px-4 px-lg-5">
-          <h2 class="m-0 text-primary">
-            NexTech Academy
-          </h2>
+            <h2 class="m-0 text-primary">
+                NexTech Academy
+            </h2>
         </a>
         <button type="button" class="navbar-toggler me-4" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
-          <span class="navbar-toggler-icon"></span>
+            <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarCollapse">
-          <div class="navbar-nav ms-auto p-4 p-lg-0">
-            <a href="index.html" class="nav-item nav-link">Home</a>
-            <a href="about.html" class="nav-item nav-link">About</a>
-            <a href="courses.html" class="nav-item nav-link active">Courses</a>
-            <a href="#" id="textwelcome" class="nav-item nav-link">Selamat Datang Asri</a>
-          </div>
-          <div id="loginbtn">
-          <a href="login.html" class="btn btn-primary py-4 px-lg-5 d-none d-lg-block">Login<i
-              class="fa fa-arrow-right ms-3"></i></a>
+            <div class="navbar-nav ms-auto p-4 p-lg-0">
+                <a href="index.html" class="nav-item nav-link">Home</a>
+                <a href="about.html" class="nav-item nav-link">About</a>
+                <a href="courses.html" class="nav-item nav-link active">Courses</a>
+                <a href="#" id="textwelcome" class="nav-item nav-link">Selamat Datang Asri</a>
             </div>
-              <div id="logoutbtn">
-                <a href="#" class="btn btn-primary py-4 px-lg-5 d-none d-lg-block">Logout<i
-                  class="fa fa-arrow-right ms-3"></i></a>
-              </div>
-         
+            <div id="loginbtn">
+                <a href="login.html" class="btn btn-primary py-4 px-lg-5 d-none d-lg-block">Login<i
+                        class="fa fa-arrow-right ms-3"></i></a>
+            </div>
+            <div id="logoutButton">
+                <a href="index.html" class="btn btn-primary py-4 px-lg-5 d-none d-lg-block">Logout<i
+                        class="fa fa-arrow-right ms-3"></i></a>
+            </div>
+
         </div>
-      </nav>
+    </nav>
     <!-- Navbar End -->
 
     <!-- Header Start -->
@@ -109,9 +109,10 @@
                 <div class="search-box d-inline-block w-75">
                     <div class="search mb-4">
                         <i class="fa fa-search"></i>
-                        <input type="text" class="form-control" id="search-all" placeholder="What do you want to learn?">
+                        <input type="text" class="form-control" id="search-all"
+                            placeholder="What do you want to learn?">
                         <button onclick="search_course_desc()" class="btn btn-primary">Search</button>
-                      </div>
+                    </div>
                 </div>
             </div>
             <div class="card-all-course row d-flex g-4 justify-content-center" id="all-course">
@@ -240,6 +241,16 @@
     <script src="js/main.js"></script>
 
     <script>
+        function clearLocalStorage() {
+            localStorage.clear();
+            //alert("Local storage berhasil dihapus.");
+            window.location.reload();
+        }
+
+        // Menambahkan event listener untuk tombol logout
+        const logoutButton = document.getElementById('logoutButton');
+        logoutButton.addEventListener('click', clearLocalStorage);
+
         function allcourses() {
             let requestOptions = {
                 method: "GET",
@@ -261,7 +272,7 @@
                                     <h5><b>${list[i].nama}</b></h5>
                                     <h5 id="cekid" style="display: none;"><b>${list[i].id}</b></h5>
                                     <p class="line-clamp">${list[i].deskripsi}</p>
-                                    <button onclick="Redirect('`+list[i].id+`')" type="button" class="btn btn-primary w-100 mb-2">Read more...</button>
+                                    <button onclick="Redirect('`+ list[i].id + `')" type="button" class="btn btn-primary w-100 mb-2">Read more...</button>
                                 </div>
                             </div>
                     `;
@@ -278,7 +289,7 @@
                 redirect: "follow",
                 headers: { "Content-type": "application/json; charset=UTF-8" },
             };
-            fetch("http://127.0.0.1:5000/search?"+ new URLSearchParams({ keyword: searchValue }), requestOptions)
+            fetch("http://127.0.0.1:5000/search?" + new URLSearchParams({ keyword: searchValue }), requestOptions)
                 .then((response) => response.json())
                 .then((result) => {
                     let list = [];
@@ -294,7 +305,7 @@
                                     <h5><b>${list[i].nama}</b></h5>
                                     <h5 id="cekid" style="display: none;"><b>${list[i].id}</b></h5>
                                     <p class="line-clamp">${list[i].deskripsi}</p>
-                                    <button onclick="Redirect('`+list[i].id+`')" type="button" class="btn btn-primary w-100 mb-2">Read more...</button>
+                                    <button onclick="Redirect('`+ list[i].id + `')" type="button" class="btn btn-primary w-100 mb-2">Read more...</button>
                                 </div>
                             </div>
                     `;
@@ -305,18 +316,18 @@
 
         // read-more
         function Redirect(id) {
-        window.location.href="detail-course.html?cid="+id;
+            window.location.href = "detail-course.html?cid=" + id;
         }
-            if(localStorage.getItem("userLoggedin") != null){
-                document.getElementById("loginbtn").style.display = "none";
-                document.getElementById("textwelcome").textContent = "Selamat datang " + localStorage.getItem("userLoggedin");
-                console.log("login");
-              }
-              else{
-                document.getElementById("logoutbtn").style.display = "none";
-                document.getElementById("textwelcome").style.display = "none";
-              }
-            
+        if (localStorage.getItem("userLoggedin") != null) {
+            document.getElementById("loginbtn").style.display = "none";
+            document.getElementById("textwelcome").textContent = "Selamat datang " + localStorage.getItem("userLoggedin");
+            console.log("login");
+        }
+        else {
+            document.getElementById("logoutButton").style.display = "none";
+            document.getElementById("textwelcome").style.display = "none";
+        }
+
     </script>
 </body>
 

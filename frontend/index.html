@@ -64,7 +64,7 @@
         <a href="login.html" class="btn btn-primary py-4 px-lg-5 d-none d-lg-block">Login<i
             class="fa fa-arrow-right ms-3"></i></a>
       </div>
-      <div id="logoutbtn">
+      <div id="logoutButton">
         <a href="#" class="btn btn-primary py-4 px-lg-5 d-none d-lg-block">Logout<i
             class="fa fa-arrow-right ms-3"></i></a>
       </div>
@@ -519,7 +519,15 @@
   <script src="js/main.js"></script>
 
   <script>
+    function clearLocalStorage() {
+      localStorage.clear();
+      //alert("Local storage berhasil dihapus.");
+      window.location.reload();
+    }
 
+    // Menambahkan event listener untuk tombol logout
+    const logoutButton = document.getElementById('logoutButton');
+    logoutButton.addEventListener('click', clearLocalStorage);
 
     if (localStorage.getItem("userLoggedin") != null) {
       document.getElementById("loginbtn").style.display = "none";
@@ -527,10 +535,9 @@
       console.log("login");
     }
     else {
-      document.getElementById("logoutbtn").style.display = "none";
+      document.getElementById("logoutButton").style.display = "none";
       document.getElementById("textwelcome").style.display = "none";
     }
-
 
     //Top 5 student
     function topstudent() {
