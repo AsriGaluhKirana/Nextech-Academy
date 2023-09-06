@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
+  <head>
     <meta charset="utf-8" />
     <title>eLEARNING - eLearning HTML Template</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
@@ -15,12 +14,19 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-        href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600&family=Nunito:wght@600;700;800&display=swap"
-        rel="stylesheet" />
+      href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600&family=Nunito:wght@600;700;800&display=swap"
+      rel="stylesheet"
+    />
 
     <!-- Icon Font Stylesheet -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet" />
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet" />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css"
+      rel="stylesheet"
+    />
 
     <!-- Libraries Stylesheet -->
     <link href="lib/animate/animate.min.css" rel="stylesheet" />
@@ -31,203 +37,283 @@
 
     <!-- Template Stylesheet -->
     <link href="css/style.css" rel="stylesheet" />
-</head>
+  </head>
 
-<body>
+  <body>
     <!-- Spinner Start -->
-    <div id="spinner"
-        class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
-        <div class="spinner-border text-primary" style="width: 3rem; height: 3rem" role="status">
-            <span class="sr-only">Loading...</span>
-        </div>
+    <div
+      id="spinner"
+      class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center"
+    >
+      <div
+        class="spinner-border text-primary"
+        style="width: 3rem; height: 3rem"
+        role="status"
+      >
+        <span class="sr-only">Loading...</span>
+      </div>
     </div>
     <!-- Spinner End -->
 
-    <nav class="navbar navbar-expand-lg bg-white navbar-light shadow sticky-top p-0">
-        <a href="index.html" class="navbar-brand d-flex align-items-center px-4 px-lg-5">
-            <h2 class="m-0 text-primary">
-                NexTech Academy
-            </h2>
-        </a>
-        <button type="button" class="navbar-toggler me-4" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarCollapse">
-            <div class="navbar-nav ms-auto p-4 p-lg-0">
-                <a href="index.html" class="nav-item nav-link">Home</a>
-                <a href="about.html" class="nav-item nav-link">About</a>
-                <a href="courses.html" class="nav-item nav-link active">Courses</a>
+    <nav
+      class="navbar navbar-expand-lg bg-white navbar-light shadow sticky-top p-0"
+    >
+      <a
+        href="index.html"
+        class="navbar-brand d-flex align-items-center px-4 px-lg-5"
+      >
+        <h2 class="m-0 text-primary">NexTech Academy</h2>
+      </a>
+      <button
+        type="button"
+        class="navbar-toggler me-4"
+        data-bs-toggle="collapse"
+        data-bs-target="#navbarCollapse"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarCollapse">
+        <div class="navbar-nav ms-auto p-4 p-lg-0">
+          <a href="index.html" class="nav-item nav-link">Home</a>
+          <a href="about.html" class="nav-item nav-link">About</a>
+          <a href="courses.html" class="nav-item nav-link active">Courses</a>
 
-                <a href="#" id="textwelcome" class="nav-item nav-link">Selamat Datang Asri</a>
-            </div>
-            <div id="loginbtn">
-                <a href="login.html" class="btn btn-primary py-4 px-lg-5 d-none d-lg-block">Login<i
-                        class="fa fa-arrow-right ms-3"></i></a>
-            </div>
-            <div id="logoutButton">
-                <a href="index.html" class="btn btn-primary py-4 px-lg-5 d-none d-lg-block">Logout<i
-                        class="fa fa-arrow-right ms-3"></i></a>
-            </div>
-
+          <a href="#" id="textwelcome" class="nav-item nav-link"
+            >Selamat Datang Asri</a
+          >
         </div>
+        <div id="loginbtn">
+          <a
+            href="login.html"
+            class="btn btn-primary py-4 px-lg-5 d-none d-lg-block"
+            >Login<i class="fa fa-arrow-right ms-3"></i
+          ></a>
+        </div>
+        <div id="logoutButton">
+          <a
+            href="index.html"
+            class="btn btn-primary py-4 px-lg-5 d-none d-lg-block"
+            >Logout<i class="fa fa-arrow-right ms-3"></i
+          ></a>
+        </div>
+      </div>
     </nav>
 
     <!-- Header Start -->
     <div class="container-fluid bg-primary py-5 mb-5 page-header">
-        <div class="container py-5">
-            <div class="row justify-content-center">
-                <div class="col-lg-10 text-center">
-                    <h1 class="display-3 text-white animated slideInDown">Detail Courses</h1>
-                    <nav aria-label="breadcrumb">
-                        <ol class="breadcrumb justify-content-center">
-                            <li class="breadcrumb-item">
-                                <a class="text-white" href="/index.html">Home</a>
-                            </li>
-                            <li class="breadcrumb-item">
-                                <a class="text-white" href="/courses.html">Courses</a>
-                            </li>
-                            <li class="breadcrumb-item text-white active" aria-current="page">
-                                Detail Courses
-                            </li>
-                        </ol>
-                    </nav>
-                </div>
-            </div>
+      <div class="container py-5">
+        <div class="row justify-content-center">
+          <div class="col-lg-10 text-center">
+            <h1 class="display-3 text-white animated slideInDown">
+              Detail Courses
+            </h1>
+            <nav aria-label="breadcrumb">
+              <ol class="breadcrumb justify-content-center">
+                <li class="breadcrumb-item">
+                  <a class="text-white" href="/index.html">Home</a>
+                </li>
+                <li class="breadcrumb-item">
+                  <a class="text-white" href="/courses.html">Courses</a>
+                </li>
+                <li
+                  class="breadcrumb-item text-white active"
+                  aria-current="page"
+                >
+                  Detail Courses
+                </li>
+              </ol>
+            </nav>
+          </div>
         </div>
+      </div>
     </div>
     <!-- Header End -->
 
     <!-- Detail Course Start -->
     <div class="container-xxl py-5">
-        <div class="container">
-            <div class="container-detail row justify-content-center">
-                <div class="content-course">
-                    <div class="img-course mb-3 d-flex justify-content-center">
-                        <img class="imgcourse" src="img/course-1-free-img.jpg" alt="">
-                    </div>
-                    <div class="detail mb-3">
-                        <h1 id="course-title" class="mb-4">Title</h1>
-                        <h4>Course Description</h4>
-                        <p id="course-desc" class="mb-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                            Pellentesque porta
-                            augue
-                            tortor.</p>
-                        <button type="button" onclick="login_redirect()" id="login-enroll"
-                            class="btn btn-primary btn-show">
-                            Login to Enroll
-                        </button>
-                        <button type="button" onclick="enroll()" id="enroll" class="btn btn-primary">
-                            Enroll
-                        </button>
-                    </div>
-                    <div class="btn-finish justify-content-end mt-4 d-flex gap-3">
-                        <button type="button" id="cancel" class="btn btn-primary">
-                            Cancel
-                        </button>
-                        <button type="button" id="finish" class="btn btn-primary">
-                            Finish
-                        </button>
-                    </div>
-                </div>
+      <div class="container">
+        <div class="container-detail row justify-content-center">
+          <div class="content-course">
+            <div class="img-course mb-3 d-flex justify-content-center">
+              <img class="imgcourse" src="img/course-1-free-img.jpg" alt="" />
             </div>
+            <div class="detail mb-3">
+              <h1 id="course-title" class="mb-4">Title</h1>
+              <h4>Course Description</h4>
+              <p id="course-desc" class="mb-4">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                Pellentesque porta augue tortor.
+              </p>
+              <button
+                type="button"
+                onclick="login_redirect()"
+                id="login-enroll"
+                class="btn btn-primary btn-show"
+              >
+                Login to Enroll
+              </button>
+              <button
+                type="button"
+                onclick="enroll()"
+                id="enroll"
+                class="btn btn-primary"
+              >
+                Enroll
+              </button>
+            </div>
+            <div class="btn-finish justify-content-end mt-4 d-flex gap-3">
+              <button type="button" id="cancel" class="btn btn-primary">
+                Cancel
+              </button>
+              <button type="button" id="finish" class="btn btn-primary">
+                Finish
+              </button>
+            </div>
+          </div>
         </div>
+      </div>
     </div>
 
     <!-- Detail Course Start -->
 
     <!-- Footer Start -->
-    <div class="container-fluid bg-dark text-light footer pt-5 mt-5 wow fadeIn" data-wow-delay="0.1s">
-        <div class="container py-5">
-            <div class="row g-5">
-                <div class="col-lg-3 col-md-6">
-                    <h4 class="text-white mb-3">Quick Link</h4>
-                    <a class="btn btn-link" href="">About Us</a>
-                    <a class="btn btn-link" href="">Contact Us</a>
-                    <a class="btn btn-link" href="">Privacy Policy</a>
-                    <a class="btn btn-link" href="">Terms & Condition</a>
-                    <a class="btn btn-link" href="">FAQs & Help</a>
-                </div>
-                <div class="col-lg-3 col-md-6">
-                    <h4 class="text-white mb-3">Contact</h4>
-                    <p class="mb-2">
-                        <i class="fa fa-map-marker-alt me-3"></i>123 Street, New York, USA
-                    </p>
-                    <p class="mb-2">
-                        <i class="fa fa-phone-alt me-3"></i>+012 345 67890
-                    </p>
-                    <p class="mb-2">
-                        <i class="fa fa-envelope me-3"></i>info@example.com
-                    </p>
-                    <div class="d-flex pt-2">
-                        <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-twitter"></i></a>
-                        <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-facebook-f"></i></a>
-                        <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-youtube"></i></a>
-                        <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-linkedin-in"></i></a>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6">
-                    <h4 class="text-white mb-3">Gallery</h4>
-                    <div class="row g-2 pt-2">
-                        <div class="col-4">
-                            <img class="img-fluid bg-light p-1" src="img/course-1.jpg" alt="" />
-                        </div>
-                        <div class="col-4">
-                            <img class="img-fluid bg-light p-1" src="img/course-2.jpg" alt="" />
-                        </div>
-                        <div class="col-4">
-                            <img class="img-fluid bg-light p-1" src="img/course-3.jpg" alt="" />
-                        </div>
-                        <div class="col-4">
-                            <img class="img-fluid bg-light p-1" src="img/course-2.jpg" alt="" />
-                        </div>
-                        <div class="col-4">
-                            <img class="img-fluid bg-light p-1" src="img/course-3.jpg" alt="" />
-                        </div>
-                        <div class="col-4">
-                            <img class="img-fluid bg-light p-1" src="img/course-1.jpg" alt="" />
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6">
-                    <h4 class="text-white mb-3">Newsletter</h4>
-                    <p>Dolor amet sit justo amet elitr clita ipsum elitr est.</p>
-                    <div class="position-relative mx-auto" style="max-width: 400px">
-                        <input class="form-control border-0 w-100 py-3 ps-4 pe-5" type="text"
-                            placeholder="Your email" />
-                        <button type="button" class="btn btn-primary py-2 position-absolute top-0 end-0 mt-2 me-2">
-                            SignUp
-                        </button>
-                    </div>
-                </div>
+    <div
+      class="container-fluid bg-dark text-light footer pt-5 mt-5 wow fadeIn"
+      data-wow-delay="0.1s"
+    >
+      <div class="container py-5">
+        <div class="row g-5">
+          <div class="col-lg-3 col-md-6">
+            <h4 class="text-white mb-3">Quick Link</h4>
+            <a class="btn btn-link" href="">About Us</a>
+            <a class="btn btn-link" href="">Contact Us</a>
+            <a class="btn btn-link" href="">Privacy Policy</a>
+            <a class="btn btn-link" href="">Terms & Condition</a>
+            <a class="btn btn-link" href="">FAQs & Help</a>
+          </div>
+          <div class="col-lg-3 col-md-6">
+            <h4 class="text-white mb-3">Contact</h4>
+            <p class="mb-2">
+              <i class="fa fa-map-marker-alt me-3"></i>123 Street, New York, USA
+            </p>
+            <p class="mb-2">
+              <i class="fa fa-phone-alt me-3"></i>+012 345 67890
+            </p>
+            <p class="mb-2">
+              <i class="fa fa-envelope me-3"></i>info@example.com
+            </p>
+            <div class="d-flex pt-2">
+              <a class="btn btn-outline-light btn-social" href=""
+                ><i class="fab fa-twitter"></i
+              ></a>
+              <a class="btn btn-outline-light btn-social" href=""
+                ><i class="fab fa-facebook-f"></i
+              ></a>
+              <a class="btn btn-outline-light btn-social" href=""
+                ><i class="fab fa-youtube"></i
+              ></a>
+              <a class="btn btn-outline-light btn-social" href=""
+                ><i class="fab fa-linkedin-in"></i
+              ></a>
             </div>
+          </div>
+          <div class="col-lg-3 col-md-6">
+            <h4 class="text-white mb-3">Gallery</h4>
+            <div class="row g-2 pt-2">
+              <div class="col-4">
+                <img
+                  class="img-fluid bg-light p-1"
+                  src="img/course-1.jpg"
+                  alt=""
+                />
+              </div>
+              <div class="col-4">
+                <img
+                  class="img-fluid bg-light p-1"
+                  src="img/course-2.jpg"
+                  alt=""
+                />
+              </div>
+              <div class="col-4">
+                <img
+                  class="img-fluid bg-light p-1"
+                  src="img/course-3.jpg"
+                  alt=""
+                />
+              </div>
+              <div class="col-4">
+                <img
+                  class="img-fluid bg-light p-1"
+                  src="img/course-2.jpg"
+                  alt=""
+                />
+              </div>
+              <div class="col-4">
+                <img
+                  class="img-fluid bg-light p-1"
+                  src="img/course-3.jpg"
+                  alt=""
+                />
+              </div>
+              <div class="col-4">
+                <img
+                  class="img-fluid bg-light p-1"
+                  src="img/course-1.jpg"
+                  alt=""
+                />
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-3 col-md-6">
+            <h4 class="text-white mb-3">Newsletter</h4>
+            <p>Dolor amet sit justo amet elitr clita ipsum elitr est.</p>
+            <div class="position-relative mx-auto" style="max-width: 400px">
+              <input
+                class="form-control border-0 w-100 py-3 ps-4 pe-5"
+                type="text"
+                placeholder="Your email"
+              />
+              <button
+                type="button"
+                class="btn btn-primary py-2 position-absolute top-0 end-0 mt-2 me-2"
+              >
+                SignUp
+              </button>
+            </div>
+          </div>
         </div>
-        <div class="container">
-            <div class="copyright">
-                <div class="row">
-                    <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
-                        &copy; <a class="border-bottom" href="#">Your Site Name</a>, All
-                        Right Reserved.
+      </div>
+      <div class="container">
+        <div class="copyright">
+          <div class="row">
+            <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
+              &copy; <a class="border-bottom" href="#">Your Site Name</a>, All
+              Right Reserved.
 
-                        <!--/*** This template is free as long as you keep the footer author’s credit link/attribution link/backlink. If you'd like to use the template without the footer author’s credit link/attribution link/backlink, you can purchase the Credit Removal License from "https://htmlcodex.com/credit-removal". Thank you for your support. ***/-->
-                        Designed By
-                        <a class="border-bottom" href="https://htmlcodex.com">HTML Codex</a>
-                    </div>
-                    <div class="col-md-6 text-center text-md-end">
-                        <div class="footer-menu">
-                            <a href="">Home</a>
-                            <a href="">Cookies</a>
-                            <a href="">Help</a>
-                            <a href="">FQAs</a>
-                        </div>
-                    </div>
-                </div>
+              <!--/*** This template is free as long as you keep the footer author’s credit link/attribution link/backlink. If you'd like to use the template without the footer author’s credit link/attribution link/backlink, you can purchase the Credit Removal License from "https://htmlcodex.com/credit-removal". Thank you for your support. ***/-->
+              Designed By
+              <a class="border-bottom" href="https://htmlcodex.com"
+                >HTML Codex</a
+              >
             </div>
+            <div class="col-md-6 text-center text-md-end">
+              <div class="footer-menu">
+                <a href="">Home</a>
+                <a href="">Cookies</a>
+                <a href="">Help</a>
+                <a href="">FQAs</a>
+              </div>
+            </div>
+          </div>
         </div>
+      </div>
     </div>
     <!-- Footer End -->
 
     <!-- Back to Top -->
-    <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
+    <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"
+      ><i class="bi bi-arrow-up"></i
+    ></a>
 
     <!-- JavaScript Libraries -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
@@ -241,101 +327,142 @@
     <script src="js/main.js"></script>
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
-</body>
-
+  </body>
 </html>
 
 <script>
-    function clearLocalStorage() {
-        localStorage.clear();
-        //alert("Local storage berhasil dihapus.");
-        window.location.reload();
-    }
-    // Menambahkan event listener untuk tombol logout
-    const logoutButton = document.getElementById('logoutButton');
-    logoutButton.addEventListener('click', clearLocalStorage);
+  function clearLocalStorage() {
+    localStorage.clear();
+    //alert("Local storage berhasil dihapus.");
+    window.location.reload();
+  }
+  // Menambahkan event listener untuk tombol logout
+  const logoutButton = document.getElementById("logoutButton");
+  logoutButton.addEventListener("click", clearLocalStorage);
 
-    function login_redirect() {
-        window.location.href = 'login.html'
-    }
+  function login_redirect() {
+    window.location.href = "login.html";
+  }
 
-    const urlParams = new URLSearchParams(window.location.search);
-    const myParam = urlParams.get('cid');
+  const urlParams = new URLSearchParams(window.location.search);
+  const myParam = urlParams.get("cid");
 
-    function enroll() {
-        const username = localStorage.getItem("userLoggedin")
-        let requestOptions = {
-            method: 'POST',
-            headers: { "Content-type": "application/json; charset=UTF-8" },
-            body: JSON.stringify({ nama: username }),
-            redirect: 'follow'
-        };
-
-        fetch("http://127.0.0.1:5000/course/enroll/" + myParam + "", requestOptions)
-            .then(response => response.json())
-            .then(result => {
-                const code = result.code
-                if (code === "success") {
-                    Swal.fire({
-                        position: 'top-end',
-                        icon: 'success',
-                        title: 'Success enroll',
-                        showConfirmButton: false,
-                        timer: 1500
-                    })
-                } else if (code === "pre not completed") {
-                    Swal.fire({
-                        position: 'top-end',
-                        icon: 'error',
-                        title: 'Fail enroll because not completed yet',
-                        showConfirmButton: false,
-                        timer: 1500
-                    })
-                } else {
-                    Swal.fire({
-                        position: 'top-end',
-                        icon: 'error',
-                        title: 'Sorry, you have not enrolled the prequisite at all.',
-                        showConfirmButton: false,
-                        timer: 1500
-                    })
-                }
-
-            })
-            .catch(error => console.log('error', error));
-    }
-
-
-
-    console.log(myParam);
-
+  function enroll() {
+    const username = localStorage.getItem("userLoggedin");
     let requestOptions = {
-        method: "GET",
-        redirect: "follow",
-        headers: { "Content-type": "application/json; charset=UTF-8" },
+      method: "POST",
+      headers: { "Content-type": "application/json; charset=UTF-8" },
+      body: JSON.stringify({ nama: username }),
+      redirect: "follow",
     };
-    fetch("http://127.0.0.1:5000/course/detail-course/" + myParam + "", requestOptions)
-        .then((response) => response.json())
-        .then((result) => {
-            console.log(result);
-            document.getElementById("course-title").textContent = result.nama;
-            document.getElementById("course-desc").textContent = result.deskripsi;
-        })
 
-    if (localStorage.getItem("userLoggedin") != null) {
-        document.getElementById("login-enroll").style.display = "none";
-        document.getElementById("loginbtn").style.display = "none";
-        document.getElementById("textwelcome").textContent = "Selamat datang " + localStorage.getItem("userLoggedin");
-        console.log("login");
+    fetch("http://127.0.0.1:5000/course/enroll/" + myParam + "", requestOptions)
+      .then((response) => response.json())
+      .then((result) => {
+        const code = result.code;
+        if (code === "success") {
+          Swal.fire({
+            position: "top-end",
+            icon: "success",
+            title: "Success enroll",
+            showConfirmButton: false,
+            timer: 1500,
+          });
+        } else if (code === "pre not completed") {
+          Swal.fire({
+            position: "top-end",
+            icon: "error",
+            title: "Fail enroll because not completed yet",
+            showConfirmButton: false,
+            timer: 1500,
+          });
+        } else {
+          Swal.fire({
+            position: "top-end",
+            icon: "error",
+            title: "Sorry, you have not enrolled the prequisite at all.",
+            showConfirmButton: false,
+            timer: 1500,
+          });
+        }
+      })
+      .catch((error) => console.log("error", error));
+  }
 
-    }
-    else {
-        document.getElementById("enroll").style.display = "none";
-        document.getElementById("cancel").style.display = "none";
-        document.getElementById("finish").style.display = "none";
-        document.getElementById("logoutButton").style.display = "none";
-        document.getElementById("textwelcome").style.display = "none";
-    }
+  console.log(myParam);
 
+  let requestOptions = {
+    method: "GET",
+    redirect: "follow",
+    headers: { "Content-type": "application/json; charset=UTF-8" },
+  };
+  fetch("http://127.0.0.1:5000/course/detail-course/" + myParam, requestOptions)
+    .then((response) => response.json())
+    .then((result) => {
+      console.log(result);
+      document.getElementById("course-title").textContent = result.nama;
+      document.getElementById("course-desc").textContent = result.deskripsi;
+    });
+
+  if (localStorage.getItem("userLoggedin") != null) {
+    document.getElementById("login-enroll").style.display = "none";
+    document.getElementById("loginbtn").style.display = "none";
+    document.getElementById("textwelcome").textContent =
+      "Selamat datang " + localStorage.getItem("userLoggedin");
+  } else {
+    document.getElementById("logoutButton").style.display = "none";
+    document.getElementById("textwelcome").style.display = "none";
+  }
+
+  function isEnrolled(id) {
+    const user_id = localStorage.getItem("id");
+    const requestOption1 = {
+      method: "GET",
+      redirect: "follow",
+      headers: {
+        "Content-type": "application/json; charset=UTF-8",
+        id: user_id,
+      },
+    };
+
+    fetch("http://127.0.0.1:5000/course/status/" + id, requestOption1)
+      .then((response) => response.json())
+      .then((result) => {
+        console.log(result);
+        if (result.message == "Not Found") {
+          document.getElementById("cancel").style.display = "none";
+          document.getElementById("finish").style.display = "none";
+        } else {
+          document.getElementById("course-title").innerHTML +=
+            " (" + result.data.status + ")";
+          document.getElementById("enroll").style.display = "none";
+          if (result.data.status == "Completed") {
+            document.getElementById("cancel").style.display = "none";
+            document.getElementById("finish").style.display = "none";
+          }
+        }
+      });
+  }
+
+  document.addEventListener("DOMContentLoaded", isEnrolled(myParam));
+
+  function delete_enroll(id) {
+    const requestOption2 = {
+      method: "DELETE",
+      redirect: "follow",
+      headers: {
+        "Content-type": "application/json; charset=UTF-8",
+      },
+    };
+
+    fetch("http://127.0.0.1:5000/course/enroll/" + id, requestOption2)
+      .then((response) => response.json())
+      .then((result) => {
+        console.log(result.message);
+      });
+  }
+
+  const cancelButton = document.getElementById("cancel");
+  cancelButton.addEventListener("click", delete_enroll(myParam));
+  
 </script>

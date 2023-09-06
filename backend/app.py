@@ -214,7 +214,7 @@ def enroll_course(id):
 #Endpoint enroll status complete or dropout
 @app.route('/course/status/<id>', methods=['PUT'])
 def complete_course(id):
-    user = login()
+    # user = login()
     # return user.id
     data = request.get_json()
     course = Coursedata.query.filter_by(user_id=user.id).filter_by(course_id=id).first_or_404()
@@ -224,6 +224,32 @@ def complete_course(id):
         db.session.add(course)
         db.session.commit()
         return {"message": "Hore! Anda selesai."}
+
+
+#Endpoint to get status enrollment
+@app.route('/course/status/<id>', methods=['GET'])
+def course_status(id):
+    user_id = request.headers.get("id")
+    course = Coursedata.query.filter_by(user_id=user_id).filter_by(course_id=id).first()
+    
+    if course:
+        response = {
+                "id" : course.id,
+                "user_id" : course.user_id,
+                "course_id" : course.course_id,
+                "status" : course.status
+        }
+        
+        return {
+            "message": "OK",
+            "data": response,
+        }, 201
+    
+    else:
+        return {
+            "message": "Not Found"
+        }, 404
+
 
 #Endpoint Get list users enrolled to course
 @app.route('/course/list/<id>', methods=['GET'])
