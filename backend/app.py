@@ -373,7 +373,7 @@ def detail_course(id):
 
     response = {
             "nama" : course.nama,
-            "deskripsi" : course.deskripsi
+            "deskripsi" : course.deskripsi,
         } 
     return response
 

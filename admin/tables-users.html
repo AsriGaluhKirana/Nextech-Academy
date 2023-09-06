@@ -201,21 +201,22 @@
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
-                                <table class="table table-bordered"  width="100%" cellspacing="0">
+                                <table class="table table-bordered" width="100%" cellspacing="0">
                                     <thead>
                                         <tr>
                                             <th>Name</th>
                                             <th>Course</th>
                                             <th>Status</th>
+                                            <th>Action</th>
                                         </tr>
                                     </thead>
                                     <tbody id="users">
-                                        <!-- <tr>
-                                            <td>Tiger Nixon</td>
-                                            <td>System Architect</td>
-                                            <td>in progress</td>
-                                            <td><button class="btn btn-warning btn-sm">Edit</button> <button class="btn btn-danger btn-sm">Delete</button></td>
-                                        </tr> -->
+                                        <!-- <tr> -->
+                                        <!-- <td>Tiger Nixon</td> -->
+                                        <!-- <td>System Architect</td> -->
+                                        <!-- <td>in progress</td> -->
+                                        <!-- <td><button class="btn btn-danger btn-sm">Delete</button></td> -->
+                                        <!-- </tr> -->
                                     </tbody>
                                 </table>
                             </div>
@@ -287,6 +288,9 @@
     <script src="js/demo/datatables-demo.js"></script>
 
     <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const myParam = urlParams.get("cid");
+    
         function users() {
 
             let requestOptions = {
@@ -307,12 +311,34 @@
                             <td>${list[i].user_name}</td>
                             <td>${list[i].course_name}</td>
                             <td>${list[i].status}</td>
+                            <td><button class="btn btn-danger btn-sm" id="deleteButton">Delete</button></td>
                         </tr>
                     `;
                     }
                 })
                 .catch((error) => console.log("error", error));
         }
+
+        function delete_enroll(id) {
+            const requestOptions = {
+              method: "DELETE",
+              redirect: "follow",
+              headers: {
+                "Content-type": "application/json; charset=UTF-8",
+              },
+            };
+          
+            fetch(`http://127.0.0.1:5000/course/enroll/${id}`, requestOptions)
+              .then((response) => response.json())
+              .then((result) => {
+                console.log(result.message);
+              });
+          }
+          
+          const cancelButton = document.getElementById("deleteButton");
+          cancelButton.addEventListener("click", () => {
+            delete_enroll(myParam);
+          });
     </script>
 
 </body>
