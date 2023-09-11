@@ -13,16 +13,18 @@ db = SQLAlchemy(app)
 
 #table user
 class Pengguna(db.Model):
-    id = db.Column(db.String, primary_key=True, nullable=False)
+    id = db.Column(db.Integer, primary_key=True)
     nama = db.Column(db.String)
+    username = db.Column(db.String, nullable=False)
     password = db.Column(db.String, nullable=False)
     role = db.Column(db.String, nullable=False)
+    contact = db.Column(db.String)
     student = db.relationship('Coursedata', backref='student', lazy='dynamic')
 
 
 #tabel course
 class Course(db.Model):
-    id = db.Column(db.String, primary_key=True, nullable=False)
+    id = db.Column(db.String, primary_key=True)
     nama = db.Column(db.String, nullable=False)
     deskripsi = db.Column(db.String, nullable=False)
     # kategori = db.Column(db.String, nullable=False)
@@ -64,16 +66,16 @@ def login():
     
     try:
         global user
-        user = Pengguna.query.filter_by(nama=username).first_or_404()
+        user = Pengguna.query.filter_by(username=username).first_or_404()
     except:
         return {
             'error message' : 'Hayo salah.'
         }
     if user.password == password:
         if user.role == 'Admin':
-            return {"id": user.id, "nama": user.nama}, 200 
+            return {"id": user.id, "nama": user.nama, "role": user.role}, 200 
         elif user.role == 'Student':
-            return {"id": user.id, "nama": user.nama}, 200 
+            return {"id": user.id, "username": user.username, "role": user.role}, 200 
     else:
         return 'Password salah!'
     
@@ -81,12 +83,18 @@ def login():
 #endpoint REGISTRASI & UPDATE PENGGUNA (penambahan auth) hanya bisa update diri sendiri
 @app.route('/user/regis', methods=['POST'])
 def create_newuser():
+    last_user = Pengguna.query.order_by(Pengguna.id.desc()).first()
+    last_num = int(last_user.id[3:].lstrip("0"))
+    new_num = str(last_num+1)
+    new_id = "S23"+ new_num.zfill(3)
     data=request.get_json()
     new_user = Pengguna(
-        id = data.get('id'),
+        id = new_id,
+        username = data.get('username'),
         nama = data.get('nama'),
         password = data.get('password'),
-        role = data.get('role')
+        role = data.get('role'),
+        contact = data.get('contact')
     )
     
     conditions = db.or_(
@@ -106,15 +114,23 @@ def create_newuser():
     db.session.commit()
     return {"message": "Hore! Anda berhasil mendaftar."}
 
+@app.route('/user/<id>', methods=['GET'])
+def getuser(id):
+    user = Pengguna.query.filter_by(id=id).first_or_404()
+    response =  {
+        "nama" : user.nama,
+        "username" : user.username,
+        "contact" : user.contact,
+        "password" : user.password
+    }    
+    return {'response' : response}
 
 @app.route('/user/update/<id>', methods=['PUT'])
 def create_updateuser(id):
     user = Pengguna.query.filter_by(id=id).first_or_404()
     data=request.get_json()
-    user.id = data.get('id'),
     user.nama = data.get('nama'),
-    user.pasword = data.get('password'),
-    user.role = data.get('role')
+    user.contact = data.get('contact'),
     
     db.session.add(user)
     db.session.commit()
@@ -124,9 +140,13 @@ def create_updateuser(id):
 #ENDPOINT COURSE Add & Update (penambahan auth) hanya bisa update diri sendiri
 @app.route('/course/add', methods=['POST'])
 def create_course():
+    last_course = Course.query.order_by(Course.id.desc()).first()
+    last_num = int(last_course.id[2:].lstrip("0"))
+    new_num = str(last_num+1)
+    new_id = "CO"+ new_num.zfill(3)
     data=request.get_json()
     new_course = Course(
-        id = data.get('id'),
+        id = new_id,
         nama = data.get('nama'),
         deskripsi = data.get('deskripsi')
     )
@@ -163,7 +183,7 @@ def update_course(id):
 #GET ALL COURSES
 @app.route('/course', methods=['GET'])
 def get_course():
-    all_courses = Course.query.all()
+    all_courses = Course.query.order_by(Course.id).all()
     
     result = []
     for course in all_courses:
@@ -174,15 +194,15 @@ def get_course():
 #Endpoint Enroll course (tidak boleh ambil course yg sama 2x)
 @app.route('/course/enroll/<id>', methods=['POST'])
 def enroll_course(id):
-    # user = login()
+    #    user = login()
     # if user.role == 'Student':
 
         data = request.get_json()
-        user = db.session.query(Pengguna).filter(Pengguna.nama == data["nama"]).first()
+        user = db.session.query(Pengguna).filter(Pengguna.username == data["nama"]).first()
         enrollment_count = db.session.query(Coursedata).filter(Coursedata.user_id == user.id).filter(Coursedata.status.in_(['in progress', 'dropout'])).count()
 
         if enrollment_count >= 5:
-            return {"message": "Enrollment gagal. Course yang boleh diambil adalah maksimal 5"}
+            return {"message": "Enrollment gagal. Course yang boleh diambil adalah maksimal 5",}
 
         get_course = db.session.query(Course).filter(Course.id == id).first()
         if get_course is None :
@@ -196,7 +216,7 @@ def enroll_course(id):
                         add_enroll = Coursedata(user_id=user.id, course_id=id, status='in progress')
                         db.session.add(add_enroll)
                         db.session.commit()
-                        return {"message": "success enroll","code":"success"}
+                        return {"message": "success enroll", "code":"success"}
                     else :
                         return {"message": "fail enroll because not completed yet","code":"pre not completed"}
                 else:
@@ -270,10 +290,10 @@ def list_enrolled_users(id):
 #Endpoint delete from course
 @app.route('/course/enroll/<id>', methods=['DELETE'])
 def delete_enroll(id):
-    #user = login()
-    data = Coursedata.query.filter_by(user_id=id).first_or_404()
+    user_id = request.headers.get("user_id")
+    course = Coursedata.query.filter_by(user_id=user_id, course_id=id).first()
     # if user.role == 'Admin':
-    db.session.delete(data)
+    db.session.delete(course)
     db.session.commit()
     return {"message": "Hore! Data selesai dihapus."}
 

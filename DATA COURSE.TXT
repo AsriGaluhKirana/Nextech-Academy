@@ -1,0 +1,29 @@
+Kursus Pengembangan Aplikasi Mobile
+Deskripsi: Pelajari bagaimana mengembangkan aplikasi mobile untuk platform seperti Android dan iOS. Kursus ini akan membahas bahasa pemrograman, alat pengembangan, dan praktik terbaik untuk menciptakan aplikasi yang responsif dan fungsional.
+
+Kursus Pengembangan Web Full-Stack
+Deskripsi: Memahami seluruh tumpukan teknologi yang terlibat dalam pengembangan web, termasuk HTML, CSS, JavaScript, serta bahasa pemrograman server-side. Anda akan belajar bagaimana mengembangkan situs web yang dinamis dan interaktif.
+
+Kursus Keamanan Teknologi Informasi
+Deskripsi: Fokus pada aspek keamanan dalam teknologi informasi. Kursus ini akan membahas teknik penilaian risiko, pelindungan data, keamanan jaringan, dan praktik terbaik untuk mengamankan sistem dan data.
+
+Kursus Pembelajaran Mesin dan Kecerdasan Buatan
+Deskripsi: Pelajari dasar-dasar pembelajaran mesin, pengenalan pola, dan pengembangan model AI. Anda akan mendapatkan pemahaman yang kuat tentang bagaimana algoritma pembelajaran mesin bekerja dan bagaimana menggunakannya dalam berbagai aplikasi.
+
+Kursus Cloud Computing
+Deskripsi: Memahami konsep cloud computing, infrastruktur sebagai layanan (IaaS), platform sebagai layanan (PaaS), dan perangkat lunak sebagai layanan (SaaS). Kursus ini akan membantu Anda memahami cara menggunakan layanan cloud seperti AWS, Azure, atau Google Cloud.
+
+Kursus Pengembangan Permainan Video
+Deskripsi: Belajar bagaimana mengembangkan permainan video dari awal hingga akhir. Anda akan mempelajari pemrograman game, desain game, grafik, dan animasi yang diperlukan untuk menciptakan permainan yang menarik.
+
+Kursus Analisis Data Big Data
+Deskripsi: Memahami cara mengumpulkan, mengelola, dan menganalisis data besar (big data) dengan menggunakan alat dan teknologi seperti Hadoop, Spark, dan database NoSQL.
+
+Kursus Internet of Things (IoT)
+Deskripsi: Pelajari tentang IoT dan cara menghubungkan perangkat fisik ke internet. Anda akan belajar tentang sensor, pengumpulan data, analisis, dan pengembangan aplikasi IoT.
+
+Kursus Pengembangan Aplikasi Blockchain
+Deskripsi: Memahami teknologi blockchain dan cara mengembangkan aplikasi yang menggunakan teknologi ini untuk keperluan seperti cryptocurrency, kontrak pintar, dan manajemen rantai pasokan.
+
+Kursus Keamanan Siber
+Deskripsi: Belajar tentang ancaman siber, teknik hacking etis, dan cara melindungi sistem dan data Anda dari serangan siber. Kursus ini akan membantu Anda menjadi seorang ahli keamanan siber.

@@ -1,47 +1,94 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <title>eLEARNING - eLearning HTML Template</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="css/auth.css" />
-        <link href="img/logo.png" rel="icon">
-    </head>
-    <body>
-        <div class="container clearfix">
-            <div class="form registration">
-                <a class="logo" href="">
-                    <img src="img/logo.png" alt="Logo" />
-                </a>
-                <form>
-                    <p>
-                        <label>First name<span>*</span></label>
-                        <input type="text" required>
-                    </p>
-                    <p>
-                        <label>Last name<span>*</span></label>
-                        <input type="text" required>
-                    </p>
-                    <p>
-                        <label>Email address<span>*</span></label>
-                        <input type="email" required>
-                    </p>
-                    <p>
-                        <label>Password<span>*</span></label>
-                        <input type="password" required>
-                    </p>
-                    <p>
-                        <label>Again password<span>*</span></label>
-                        <input type="password" required>
-                    </p>
-                    <p>
-                        <label>
-                            <a href="login.html">Have an account</a>
-                        </label>
-                        <input type="submit" value="Signup" />
-                    </p>
-                </form>
-            </div>
+
+<head>
+    <title>eLEARNING - eLearning HTML Template</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/auth.css" />
+    <link href="img/logo.png" rel="icon">
+</head>
+
+<body>
+    <div class="container clearfix">
+        <div class="form registration">
+            <a class="logo" href="">
+                <img src="img/logo.png" alt="Logo" />
+            </a>
+            <form>
+                <p>
+                    <label>First name<span>*</span></label>
+                    <input id="first-name" type="text" required>
+                </p>
+                <p>
+                    <label>Last name<span>*</span></label>
+                    <input id="last-name" type="text" required>
+                </p>
+                <p>
+                    <label>Username<span>*</span></label>
+                    <input id="username" type="text" required>
+                </p>
+                <p>
+                    <label>Password<span>*</span></label>
+                    <input id="password" type="password" required>
+                </p>
+                <p>
+                    <label>Again password<span>*</span></label>
+                    <input id="confirm-pass" type="password" required>
+                </p>
+                <p>
+                    <label>
+                        <a href="login.html">Have an account</a>
+                    </label>
+                    <button type="submit">Sign Up</button>
+                </p>
+            </form>
         </div>
-    </body>
+    </div>
+    <script>
+        const signUp = document.querySelector(".registration form");
+        signUp.addEventListener("submit", create_newuser)
+
+        function create_newuser(e) {
+            e.preventDefault()
+
+            const firstName = document.getElementById("first-name").value;
+            const lastName = document.getElementById("last-name").value;
+            const username = document.getElementById("username").value;
+            const password = document.getElementById("password").value;
+            const confirmPass = document.getElementById("confirm-pass").value;
+
+            if (password === confirmPass) {
+                const newUser = {
+                    "nama": firstName + " " + lastName,
+                    "username": username,
+                    "password": password,
+                    "role": "Student",
+                }
+
+                const requestOptions = {
+                    method: "POST",
+                    headers: {
+                        "Content-type": "application/json; charset=UTF-8"
+                    },
+                    body: JSON.stringify(newUser),
+                }
+
+                fetch("http://127.0.0.1:5000/user/regis", requestOptions)
+                    .then((response) => response.json())
+                    .then((jsonResp) => {
+                        if (jsonResp.status == "error") {
+                            alert("username is already exists!")
+                        } else {
+                            alert("Success! Please login to proceed")
+                            signUp.reset();
+                        }
+                    })
+            } else {
+                alert("confirm password not match")
+            }
+        }
+    </script>
+</body>
+
 </html>

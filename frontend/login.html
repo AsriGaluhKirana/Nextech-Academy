@@ -61,9 +61,9 @@
             }
           })
           .then((jsonResp) => {
-            if (jsonResp.id[0] === "S") {
+            if (jsonResp.role === "Student") {
               //alert("Hai Academian, kamu berhasil Login.")
-              localStorage.setItem("userLoggedin",jsonResp.nama);
+              localStorage.setItem("userLoggedin",jsonResp.username);
               localStorage.setItem("id", jsonResp.id)
               console.log(localStorage.getItem("userLoggedin_"))
               if (localStorage.getItem("userLoggedin")!= null) {

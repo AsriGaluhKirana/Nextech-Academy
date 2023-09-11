@@ -198,10 +198,6 @@
                                         <div class="modal-body">
                                             <form>
                                                 <div class="form-group">
-                                                    <label for="id-course" class="col-form-label">ID:</label>
-                                                    <input type="text" class="form-control" id="id-course" />
-                                                </div>
-                                                <div class="form-group">
                                                     <label for="title-course" class="col-form-label">Title:</label>
                                                     <input type="text" class="form-control" id="title-course" />
                                                 </div>
@@ -315,11 +311,9 @@
 
     <script>
         function addcourse(){
-            const new_id = document.getElementById("id-course")
             const new_title = document.getElementById("title-course");
             const new_description = document.getElementById("desc-text");
             const data = {
-                "id": new_id.value,
                 "nama": new_title.value,
                 "deskripsi": new_description.value,
                 }

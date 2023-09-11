@@ -119,9 +119,9 @@
             </button>
           </div>
           <div class="btn-finish justify-content-end mt-4 d-flex gap-3">
-            <!-- <button type="button" id="cancel" class="btn btn-primary">
+            <button type="button" class="btn btn-primary" id="deleteButton">
               Cancel
-            </button> -->
+            </button>
             <button type="button" id="finish" class="btn btn-primary">
               Finish
             </button>
@@ -257,16 +257,18 @@
 
     function enroll() {
       const username = localStorage.getItem("userLoggedin");
+      const id = localStorage.getItem("id");
       let requestOptions = {
         method: "POST",
         headers: { "Content-type": "application/json; charset=UTF-8" },
-        body: JSON.stringify({ nama: username }),
+        body: JSON.stringify({ nama: username,id:id }),
         redirect: "follow",
       };
 
       fetch("http://127.0.0.1:5000/course/enroll/" + myParam + "", requestOptions)
         .then((response) => response.json())
         .then((result) => {
+          console.log(result)
           const code = result.code;
           if (code === "success") {
             Swal.fire({
@@ -353,6 +355,29 @@
     }
 
     document.addEventListener("DOMContentLoaded", isEnrolled(myParam));
+
+    function delete_enroll(id) {
+      const user_id = localStorage.getItem("id")
+      const requestOptions = {
+          method: "DELETE",
+          redirect: "follow",
+          headers: {
+              "Content-type": "application/json; charset=UTF-8",
+              "user_id": user_id,
+          },
+      };
+      fetch(`http://127.0.0.1:5000/course/enroll/${id}`, requestOptions)
+          .then((response) => response.json())
+          .then((result) => {
+              alert(result.message);
+          })
+          //.finally(() => {
+            //  window.location.reload();
+          //});
+  }
+
+  const deleteButton = document.getElementById("deleteButton");
+  deleteButton.addEventListener("click", delete_enroll(myParam))
 
   </script>
 </body>

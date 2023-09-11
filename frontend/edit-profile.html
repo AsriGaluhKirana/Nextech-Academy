@@ -93,23 +93,21 @@
   <div class="container">
     <div class="main-body">
       <div class="row">
-        <div class="col-lg-4">
+        <!-- <div class="col-lg-4">
           <div class="card">
             <div class="card-body">
               <div class="d-flex flex-column align-items-center text-center">
-                <img src="https://bootdey.com/img/Content/avatar/avatar6.png" alt="Admin"
-                  class="rounded-circle p-1 bg-primary" width="110">
+                <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Admin" class="rounded-circle"
+                  width="150" />
                 <div class="mt-3">
-                  <h4>John Doe</h4>
-                  <p class="text-secondary mb-1">Full Stack Developer</p>
-                  <p class="text-muted font-size-sm">Bay Area, San Francisco, CA</p>
+                  <h4 id="fullname1">John Doe</h4>
+                  <p class="text-secondary mb-1">Student</p>
                 </div>
               </div>
-              
             </div>
           </div>
-        </div>
-        <div class="col-lg-8">
+        </div> -->
+        <div class="col-lg">
           <div class="card">
             <div class="card-body">
               <div class="row mb-3">
@@ -117,28 +115,28 @@
                   <h6 class="mb-0">Full Name</h6>
                 </div>
                 <div class="col-sm-9 text-secondary">
-                  <input type="text" class="form-control" value="John Doe">
+                  <input type="text" class="form-control" id="fullname">
                 </div>
               </div>
-              <div class="row mb-3">
+              <!-- <div class="row mb-3">
                 <div class="col-sm-3">
-                  <h6 class="mb-0">Email</h6>
+                  <h6 class="mb-0">Username</h6>
                 </div>
                 <div class="col-sm-9 text-secondary">
-                  <input type="text" class="form-control" value="john@example.com">
+                  <input type="text" class="form-control" id="username">
                 </div>
-              </div>
+              </div> -->
               <div class="row mb-3">
                 <div class="col-sm-3">
-                  <h6 class="mb-0">Phone</h6>
+                  <h6 class="mb-0">Mobile Phone</h6>
                 </div>
                 <div class="col-sm-9 text-secondary">
-                  <input type="text" class="form-control" value="(239) 816-9029">
+                  <input type="text" class="form-control" id="contact">
                 </div>
               </div>
-              <div class="row mb-3">
+              <!-- <div class="row mb-3">
                 <div class="col-sm-3">
-                  <h6 class="mb-0">Mobile</h6>
+                  <h6 class="mb-0">Password</h6>
                 </div>
                 <div class="col-sm-9 text-secondary">
                   <input type="text" class="form-control" value="(320) 380-4539">
@@ -146,16 +144,16 @@
               </div>
               <div class="row mb-3">
                 <div class="col-sm-3">
-                  <h6 class="mb-0">Address</h6>
+                  <h6 class="mb-0">Confirm Password</h6>
                 </div>
                 <div class="col-sm-9 text-secondary">
                   <input type="text" class="form-control" value="Bay Area, San Francisco, CA">
                 </div>
-              </div>
+              </div> -->
               <div class="row">
                 <div class="col-sm-3"></div>
                 <div class="col-sm-9 text-secondary">
-                  <input type="button" class="btn btn-primary px-4" value="Save Changes">
+                  <input type="button" id="save-btn" class="btn btn-primary px-4" value="Save Changes">
                 </div>
               </div>
             </div>
@@ -300,6 +298,54 @@
   <!-- Template Javascript -->
   <script src="js/main.js"></script>
   <script>
+    function editprofile (e) {
+      e.preventDefault()
+
+      const userId = localStorage.getItem("id");
+      const fullname = document.getElementById("fullname");
+      const contact = document.getElementById("contact");
+
+      fetch(`http://127.0.0.1:5000/user/${userId}`)
+        .then((response) => response.json())
+        .then((jsonResp) => {
+          fullname.value = jsonResp.response.nama
+          contact.value = jsonResp.response.contact
+        })
+    }
+
+    document.addEventListener("DOMContentLoaded", editprofile)
+
+    function submitedit(e) {
+      e.preventDefault()
+
+      const userId = localStorage.getItem("id");
+      const fullname = document.getElementById("fullname");
+      const contact = document.getElementById("contact");
+
+      const data = {
+        "nama": fullname.value,
+        "contact": contact.value
+      }
+
+      var reqOptions = {
+        method: "PUT",
+        headers: {
+          //"Content-type": "application/json; charset=UTF-8","Authorization": "Basic " + btoa("Ahmad:Am123") maap gan ini 
+          "Content-type": "application/json; charset=UTF-8"
+        },
+        body: JSON.stringify(data),
+        redirect: "follow",
+      };
+      fetch(`http://127.0.0.1:5000/user/update/${userId}`, reqOptions)
+        .then(response => response.json())
+        .then(result => window.location.reload())
+        .catch(error => console.log('error', error));
+    }
+
+    const saveBtn = document.getElementById("save-btn")
+    saveBtn.addEventListener("click", submitedit)
+
+
     function clearLocalStorage() {
       localStorage.clear();
       //alert("Local storage berhasil dihapus.");
