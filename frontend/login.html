@@ -10,6 +10,11 @@
   <body>
     <div class="container clearfix">
       <div class="form login">
+          <p>
+            <a class="logo" href="index.html">
+              <img src="img/icons8-back-arrow-30.png" alt="Logo" />
+            </a>
+          </p>
         <a class="logo" href="">
           <img src="img/logo.png" alt="Logo" />
         </a>
@@ -24,8 +29,7 @@
           </p>
           <p>
             <label>
-              <a href="index.html">Back to home</a>
-              <a href="registration.html">Create an account</a>
+              <a href="registration.html">Don't have an account? Create an account.</a>
             </label>
             <input type="submit" value="Login" />
           </p>
@@ -33,6 +37,8 @@
       </div>
     </div>
 
+    
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
       let formLogin = document.getElementById("login-form");
       formLogin.addEventListener("submit", login);

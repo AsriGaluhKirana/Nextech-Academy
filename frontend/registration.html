@@ -12,6 +12,11 @@
 <body>
     <div class="container clearfix">
         <div class="form registration">
+            <p>
+                <a class="logo" href="index.html">
+                    <img src="img/icons8-back-arrow-30.png" alt="Logo" />
+                </a>
+            </p>
             <a class="logo" href="">
                 <img src="img/logo.png" alt="Logo" />
             </a>
@@ -29,6 +34,10 @@
                     <input id="username" type="text" required>
                 </p>
                 <p>
+                    <label>Contact<span>*</span></label>
+                    <input id="contact" type="text" required>
+                </p>
+                <p>
                     <label>Password<span>*</span></label>
                     <input id="password" type="password" required>
                 </p>
@@ -40,11 +49,13 @@
                     <label>
                         <a href="login.html">Have an account</a>
                     </label>
-                    <button type="submit">Sign Up</button>
+                    <input type="submit" value="Sign Up" />
                 </p>
             </form>
         </div>
     </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
         const signUp = document.querySelector(".registration form");
         signUp.addEventListener("submit", create_newuser)
@@ -55,6 +66,7 @@
             const firstName = document.getElementById("first-name").value;
             const lastName = document.getElementById("last-name").value;
             const username = document.getElementById("username").value;
+            const contact = document.getElementById("contact").value;
             const password = document.getElementById("password").value;
             const confirmPass = document.getElementById("confirm-pass").value;
 
@@ -63,6 +75,7 @@
                     "nama": firstName + " " + lastName,
                     "username": username,
                     "password": password,
+                    "contact": contact,
                     "role": "Student",
                 }
 
@@ -77,15 +90,30 @@
                 fetch("http://127.0.0.1:5000/user/regis", requestOptions)
                     .then((response) => response.json())
                     .then((jsonResp) => {
-                        if (jsonResp.status == "error") {
-                            alert("username is already exists!")
+                        if (jsonResp.status === "error") {
+                            Swal.fire({
+                                icon: "error",
+                                title: "Error",
+                                text: "Username is already taken!",
+                            });
                         } else {
-                            alert("Success! Please login to proceed")
+                            Swal.fire({
+                                icon: "success",
+                                title: "Success",
+                                text: "Registration successful!",
+                            });
                             signUp.reset();
                         }
                     })
+                    .catch((error) => {
+                        console.error("Error:", error);
+                    });
             } else {
-                alert("confirm password not match")
+                Swal.fire({
+                    icon: "error",
+                    title: "Error",
+                    text: "Passwords do not match!",
+                });
             }
         }
     </script>
