@@ -211,21 +211,27 @@ def enroll_course(id):
             if db.session.query(Prequisite).filter(Prequisite.course_id == id).first() != None:
                 preqid = db.session.query(Prequisite).filter(Prequisite.course_id == id).first().prequisite_id
                 preqcomp = db.session.query(Coursedata).filter(Coursedata.user_id == user.id).filter(Coursedata.course_id == preqid).first()
+                
+                print(preqcomp)
+                
                 if preqcomp != None:
                     if preqcomp.status == 'completed':
                         add_enroll = Coursedata(user_id=user.id, course_id=id, status='in progress')
                         db.session.add(add_enroll)
                         db.session.commit()
                         return {"message": "success enroll", "code":"success"}
-                    else :
-                        return {"message": "fail enroll because not completed yet","code":"pre not completed"}
+                    else:
+                        return {
+                            "message": "fail to enroll because prereq is not completed yet",
+                            "code":"pre not completed"
+                        }
                 else:
                     return {"message": "Maaf gagal, kamu belum enroll sama sekali si prequisitenya!!","code":"pre not enrolled"}
             else :
                     add_enroll = Coursedata(user_id=user.id, course_id=id, status='in progress')
                     db.session.add(add_enroll)
                     db.session.commit()
-                    return {"message": "success enroll"}
+                    return {"message": "success enroll", "code": "success"}
        
     # else:
     #     return {"message": "Hanya boleh dilakukan oleh student."}
@@ -234,16 +240,15 @@ def enroll_course(id):
 #Endpoint enroll status complete or dropout
 @app.route('/course/status/<id>', methods=['PUT'])
 def complete_course(id):
-    # user = login()
-    # return user.id
+    user_id = request.headers.get("id")
     data = request.get_json()
-    course = Coursedata.query.filter_by(user_id=user.id).filter_by(course_id=id).first_or_404()
-    if user.role == 'Student':
-        course.status = data.get("status")
+    course = Coursedata.query.filter_by(user_id=user_id, course_id=id).first()
+    
+    course.status = data.get("status")
         
-        db.session.add(course)
-        db.session.commit()
-        return {"message": "Hore! Anda selesai."}
+    db.session.add(course)
+    db.session.commit()
+    return {"message": "Hore! Anda selesai."}
 
 
 #Endpoint to get status enrollment
@@ -290,9 +295,9 @@ def list_enrolled_users(id):
 #Endpoint delete from course
 @app.route('/course/enroll/<id>', methods=['DELETE'])
 def delete_enroll(id):
-    user_id = request.headers.get("user_id")
+    user_id = request.headers.get("id")
     course = Coursedata.query.filter_by(user_id=user_id, course_id=id).first()
-    # if user.role == 'Admin':
+
     db.session.delete(course)
     db.session.commit()
     return {"message": "Hore! Data selesai dihapus."}

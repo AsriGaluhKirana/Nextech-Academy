@@ -119,7 +119,7 @@
             </button>
           </div>
           <div class="btn-finish justify-content-end mt-4 d-flex gap-3">
-            <button type="button" class="btn btn-primary" id="deleteButton">
+            <button type="button" class="btn btn-primary" id="cancel">
               Cancel
             </button>
             <button type="button" id="finish" class="btn btn-primary">
@@ -254,6 +254,106 @@
 
     const urlParams = new URLSearchParams(window.location.search);
     const myParam = urlParams.get("cid");
+    const user_id = localStorage.getItem("id")
+
+    function delete_enroll(id) {
+      const myHeader = {
+        "id": user_id
+      }
+
+      const requestOptions = {
+        method: "DELETE",
+        redirect: "follow",
+        headers: myHeader,
+      };
+
+      fetch(`http://127.0.0.1:5000/course/enroll/${id}`, requestOptions)
+        .then((response) => response.json())
+        .then((result) => {
+          Swal.fire({
+            title: 'Canceled!',
+            text: 'Your course has been canceled.',
+            icon: 'success',
+            timer: 2000, // Adjust the timer duration as needed (in milliseconds)
+            showConfirmButton: false,
+          });
+
+          // Delay the page reload for 2 seconds (2000 milliseconds)
+          setTimeout(function () {
+            window.location.reload();
+          }, 2000);
+        });
+
+    }
+    const cancel = document.getElementById("cancel")
+    cancel.addEventListener("click", function () {
+      Swal.fire({
+        title: 'Are you sure?',
+        text: "You won't be able to revert this!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, delete it!'
+      }).then((result) => {
+        if (result.isConfirmed) {
+          delete_enroll(myParam);
+        }
+      })
+    });
+
+    function finishcourse(id) {
+      const myHeader = {
+        "Content-Type": "application/json",
+        "id": user_id,
+      }
+
+      const data = {
+        "status" : "Completed"
+      }
+
+      const requestOptions = {
+        method: "PUT",
+        redirect: "follow",
+        headers: myHeader,
+        body: JSON.stringify(data)
+      };
+
+      fetch(`http://127.0.0.1:5000/course/status/${id}`, requestOptions)
+        .then((response) => response.json())
+        .then((result) => {
+          Swal.fire({
+            title: 'Finish!',
+            text: 'Your course has been finished.',
+            icon: 'success',
+            timer: 2000, // Adjust the timer duration as needed (in milliseconds)
+            showConfirmButton: false,
+          });
+
+          // Delay the page reload for 2 seconds (2000 milliseconds)
+          setTimeout(function () {
+            window.location.reload();
+          }, 2000);
+        });
+
+    }
+    const finish = document.getElementById("finish")
+    finish.addEventListener("click", function () {
+      Swal.fire({
+        title: 'Are you sure?',
+        text: "You won't be able to revert this!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, finish it!'
+      }).then((result) => {
+        if (result.isConfirmed) {
+          finishcourse(myParam);
+        }
+      })
+    });
+
 
     function enroll() {
       const username = localStorage.getItem("userLoggedin");
@@ -261,7 +361,7 @@
       let requestOptions = {
         method: "POST",
         headers: { "Content-type": "application/json; charset=UTF-8" },
-        body: JSON.stringify({ nama: username,id:id }),
+        body: JSON.stringify({ nama: username, id: id }),
         redirect: "follow",
       };
 
@@ -269,6 +369,7 @@
         .then((response) => response.json())
         .then((result) => {
           console.log(result)
+          console.log(result.code)
           const code = result.code;
           if (code === "success") {
             Swal.fire({
@@ -277,7 +378,9 @@
               title: "Success enroll",
               showConfirmButton: false,
               timer: 1500,
-            });
+            }).then(function () {
+              window.location.reload()
+            })
           } else if (code === "pre not completed") {
             Swal.fire({
               position: "top-end",
@@ -299,7 +402,7 @@
         .catch((error) => console.log("error", error));
     }
 
-    console.log(myParam);
+    // console.log(myParam);
 
     let requestOptions = {
       method: "GET",
@@ -309,7 +412,7 @@
     fetch("http://127.0.0.1:5000/course/detail-course/" + myParam + "", requestOptions)
       .then((response) => response.json())
       .then((result) => {
-        console.log(result);
+        // console.log(result);
         document.getElementById("course-title").textContent = result.nama;
         document.getElementById("course-desc").textContent = result.deskripsi;
       });
@@ -339,15 +442,16 @@
       fetch("http://127.0.0.1:5000/course/status/" + id, requestOption1)
         .then((response) => response.json())
         .then((result) => {
-          console.log(result);
+          // console.log(result);
           if (result.message == "Not Found") {
-            //document.getElementById("cancel").style.display = "none";
+            document.getElementById("cancel").style.display = "none";
             document.getElementById("finish").style.display = "none";
           } else {
+            document.getElementById("enroll").style.display = "none";
             document.getElementById("course-title").innerHTML +=
               " (" + result.data.status + ")";
             if (result.data.status == "Completed") {
-             // document.getElementById("cancel").style.display = "none";
+              document.getElementById("cancel").style.display = "none";
               document.getElementById("finish").style.display = "none";
             }
           }
@@ -355,30 +459,6 @@
     }
 
     document.addEventListener("DOMContentLoaded", isEnrolled(myParam));
-
-    function delete_enroll(id) {
-      const user_id = localStorage.getItem("id")
-      const requestOptions = {
-          method: "DELETE",
-          redirect: "follow",
-          headers: {
-              "Content-type": "application/json; charset=UTF-8",
-              "user_id": user_id,
-          },
-      };
-      fetch(`http://127.0.0.1:5000/course/enroll/${id}`, requestOptions)
-          .then((response) => response.json())
-          .then((result) => {
-              alert(result.message);
-          })
-          //.finally(() => {
-            //  window.location.reload();
-          //});
-  }
-
-  const deleteButton = document.getElementById("deleteButton");
-  deleteButton.addEventListener("click", delete_enroll(myParam))
-
   </script>
 </body>
 
